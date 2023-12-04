@@ -5,7 +5,7 @@ import { CheckIcon } from '@heroicons/react/20/solid';
 import Col7 from "@/assets/Col7.png";
 import Col12 from "@/assets/Col12.png";
 import P1 from "@/assets/P1.png";
-import T1 from "@/assets/t1.png"; 
+import T1 from "@/assets/T1.png"; 
 import Slider from '@/components/Slider';
 import TestimonialCard from '@/components/TestimonialCard';
 import testmonials from "@/data/testimonials.json";
