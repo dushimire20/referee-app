@@ -31,7 +31,7 @@ const KeyFeatures = (props: Props) => {
 
         <div className="md:h-[70%] md:w-[50%]   justify-center text-center w-full">
         <p
-            className=" font-bold text-[56px] leading-[61.6px] "
+            className=" font-bold md:text-[56px] text-5xl leading-[61.6px] "
             >
             Game management
             </p>
