@@ -21,7 +21,7 @@ const OurGoals = (props: Props) => {
             </div>
             <div className="md:h-[70%] md:w-[50%]   justify-center text-center w-full ">
                 <p
-                className="font-extrabold text-[56px] leading-[61.6px] text-gray-100"
+                className="font-extrabold md:text-[56px] text-5xl leading-[61.6px] text-gray-100"
                 >
                 Easy game management at your fingertips!
                 </p>
