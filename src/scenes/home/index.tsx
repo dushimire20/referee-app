@@ -41,8 +41,8 @@ const Home: React.FC = () => {
           </div>
         </section>  
         <section className=" items-center justify-center h-[60px]  w-full bg-gray-200">
-        <div className=" py-5 mx-auto   md:pb-0  mt-0  w-5/6">
-          <div className="mx-auto">
+        <div className=" py-5 mx-auto   md:pb-0  mt-0  w-5/6 hidden md:block">
+          <div className="mx-auto ">
             <div className="text-center  flex w-full items-center justify-between gap-4 ">
             <img alt="smart-finder-sponsor" src={LogoGray} />
             <img alt="Zoomer-sponsor" src={Zoomer} />

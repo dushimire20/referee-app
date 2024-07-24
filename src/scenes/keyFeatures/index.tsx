@@ -16,20 +16,20 @@ const KeyFeatures = (props: Props) => {
   return (
     <div className=" pt-6 justify-center mx-auto">
 
-    <div className=" w-[267px] h-[60.46px] mt-8 mx-auto ">
+    <div className=" md:w-[267px] md:h-[60.46px] mt-8 mx-auto  text-center justify-center items-center">
         <p className="text-[32px] leading-[44.8px] font-normal text-gray-100 text-center">Key features</p>
-        <img alt='Line' src={Line} />
+        <img alt='Line' src={Line} className=' ml-24 md:ml-0 ' />
 
     </div>
     
     <div className=" bg-secondary-100  mt-10 ">
-    <div className="absolute mt-0 w-[629.02px] left-0 pl-0 invisible md:visible ">
+    <div className="absolute mt-0 md:w-[629.02px] left-0 pl-0 invisible md:visible ">
     <img src={BasketBall}  className=" pl-0" />
     </div>
     
-    <section className="mx-auto w-5/6 flex justify-between gap-8 h-full mt-12 py-12">
+    <section className="mx-auto w-5/6 md:flex justify-between gap-8 h-full mt-12 py-12">
 
-        <div className="h-[70%] w-[50%]   justify-center ">
+        <div className="md:h-[70%] md:w-[50%]   justify-center text-center w-full">
         <p
             className=" font-bold text-[56px] leading-[61.6px] "
             >
@@ -61,7 +61,7 @@ const KeyFeatures = (props: Props) => {
 
         </div>
 
-        <div className="h-full w-[50%]   justify-center ">
+        <div className="h-full md:w-[50%]   justify-center text-center w-full ">
         <div>
            <img alt="Key Features" src={Col7} />
         </div>           
@@ -72,14 +72,14 @@ const KeyFeatures = (props: Props) => {
     </div>
 
     <div className="w-5/6 mx-auto">
-    <div className="flex justify-center gap-8 h-full mt-12 py-12">
-        <div className="w-[50%]">
+    <div className="md:flex justify-center gap-8 h-full mt-12 py-12 text-center">
+        <div className="md:w-[50%] w-full">
         <img alt="Key Features" src={Col12} />
         </div>
-        <div className="w-[50%] justify-center ">
-            <p className="font-bold text-[56px] leading-[100.8px] text-secondary-100 mt-12">Game assignment</p>
+        <div className="md:w-[50%] justify-center w-full text-center ">
+            <p className="font-bold text-[56px] leading-[37.04px] tracking-tighter text-secondary-100 mt-12">Game assignment</p>
             <p
-            className="font-normal text-[21.63px] leading-[38.93px] text-gray-100"
+            className="font-normal text-[21.63px] leading-[35px] tracking-tighter text-gray-100 mt-12"
             >Referees will be able to be assigned games and the schedule so that they can prepare accordingly. </p>
             
 
@@ -90,14 +90,14 @@ const KeyFeatures = (props: Props) => {
     </div>
     
     <div className=" bg-secondary-100">
-    <div className=" w-5/6 mx-auto  flex justify-center gap-8 h-full mt-12 py-12">
-        <div className="w-[50%]">
-        <p className="font-bold text-[56px] leading-[100.8px]  mt-12">Payment tracking</p>
+    <div className=" w-5/6 mx-auto  md:flex justify-center gap-8 h-full mt-12 py-12">
+        <div className="md:w-[50%] w-full text-center">
+        <p className="font-bold text-[56px] leading-[37.04px] tracking-tighter md:mt-12">Payment tracking</p>
             <p
-            className="font-normal text-[21.63px] leading-[38.93px] "
+            className="font-normal text-[21.63px] leading-[35px] tracking-tighter mt-12 "
             >Referees are able to see payments per game and receive payments Via the platform. Payments will be provided according to referee’s experience. </p>
         </div>
-        <div className="w-[50%] justify-center ">
+        <div className="md:w-[50%] justify-center w-full text-center ">
             
             <img alt="Key Features" src={P1} />
             <img alt="Key Features" src={T1}  className=" bg-primary-100 top-0"/>

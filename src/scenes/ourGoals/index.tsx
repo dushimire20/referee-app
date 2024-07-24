@@ -12,14 +12,14 @@ const OurGoals = (props: Props) => {
             <img alt='Line' src={Line} />
 
         </div>
-        <section className="mx-auto flex justify-between gap-8 h-full mt-12">
-            <div className="h-[70%] w-[50%]   justify-center ">
+        <section className="mx-auto md:flex justify-between gap-8 h-full mt-12">
+            <div className="md:h-[70%] md:w-[50%]   justify-center w-full text-center ">
                <div>
                <img alt="Goals" src={GoalImage} />
                </div>
 
             </div>
-            <div className="h-[70%] w-[50%]   justify-center ">
+            <div className="md:h-[70%] md:w-[50%]   justify-center text-center w-full ">
                 <p
                 className="font-extrabold text-[56px] leading-[61.6px] text-gray-100"
                 >
