@@ -112,7 +112,7 @@ const KeyFeatures = (props: Props) => {
     <main
     className={`flex min-h-screen flex-col items-center justify-between py-24`}
     >
-        <div className="w-5/6 mx-auto">
+        <div className="md:w-5/6 mx-auto w-full">
         <Slider options={{ align: "center" }}>
           {testmonials.map((testimonial, i) => (
             // 3. flex-[0_0_50%] set the width of each card to 50% of the viewport

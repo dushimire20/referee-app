@@ -25,7 +25,7 @@ const Navbar = ({isTopOfPage}: Props) => {
           <div className={`${flexBetween} w-full gap-16`}>
             {/* left side */}
 
-            <img alt="logo" src={Logo} />
+            <p className="font-poppins font-bold text-[32px] leading-[35.2px]">ARAB.</p>
 
             {/* Right Side */}
 
@@ -43,21 +43,24 @@ const Navbar = ({isTopOfPage}: Props) => {
                   </NavLink>
 
                   <NavLink 
-                  to="/goal"                  
+                  to="/goals"  
+                  onClick={handleClick}                
                   >
                     Our Goal
 
                   </NavLink>
 
                   <NavLink 
-                  to="/"                  
+                  to="/features" 
+                  onClick={handleClick}                 
                   >
                     Key features
 
                   </NavLink>
 
                   <NavLink 
-                  to="/features"                  
+                  to="/login" 
+                  onClick={handleClick}                 
                   >
                     Sign in
 
@@ -128,7 +131,8 @@ const Navbar = ({isTopOfPage}: Props) => {
                   </NavLink>
 
                   <NavLink 
-                  to="/"                  
+                  to="/login"
+                  onClick={handleClick}                  
                   >
                     Sign in
 

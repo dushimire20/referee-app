@@ -1,11 +1,44 @@
 import Layout from '@/components/Layout';
-import React from 'react';
+import React, { useState } from 'react';
 import Slay from "@/assets/Saly.png";
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {}
 
 const SignUp: React.FC = (props: Props) => {
+   const [firstName, setFirstname] = useState('');
+   const [lastName, setLastname] = useState('');
+   const [email, setEmail] = useState('');
+   const [phoneNumber, setPhoneNumber] = useState('');
+   const [password, setPassword] = useState('');
+   const [confirmPassword, setConfirmPassword] = useState('');
+
+   const navigate = useNavigate();
+
+   const handleSubmit = (e) => {
+    e.preventDefault();
+    if(password !== confirmPassword){
+      console.log("Passwords do not match");
+    }
+    Axios.post('http://localhost:3000/auth/signup', { 
+      lastName,
+      firstName,
+      phoneNumber,
+      email,
+      password,
+      confirmPassword,
+   }).then( Response => {
+    if(Response.data.status){
+      navigate('/login')
+    }
+    
+   }).catch(err => {
+    console.log(err);
+   } )
+  };
+
   return (
     <Layout>
         
@@ -23,7 +56,9 @@ const SignUp: React.FC = (props: Props) => {
                 </div>
 
                 <div className='w-full'>
-                  <form className='w-[539px] rounded-3xl bg-primary-100 py-12  shadow-lg'>
+                  <form 
+                  onSubmit={handleSubmit}
+                  className='w-[539px] rounded-3xl bg-primary-100 py-12  shadow-lg'>
                     <div className='flex mx-auto w-5/6 gap-16 '>
                       <label className='text-gray-100'>Welcome to 
                       <span className='text-secondary-100 font-bold'> REFEREE.</span><br />
@@ -31,29 +66,31 @@ const SignUp: React.FC = (props: Props) => {
                       </label>
                       <label className='text-gray-200 h-[40px]'>
                       Have an Account ? <br/>
-                      <Link to="/signIn" className='text-secondary-100' >Sign in</Link>
+                      <Link to="/login" className='text-secondary-100' >Sign in</Link>
                         
                       </label>
 
                     </div>
                     <div className='w-5/6 mx-auto '>
-                      <label className='text-gray-100'>Enter your username or email address</label>
+                      <label className='text-gray-100'>Enter your full name</label>
 
                       <div className='flex gap-4'>
                       <input 
                       type='text'
                       name='name'
-                      placeholder="Full names"
+                      placeholder="Last Name"
                       className='mt-2 h-[57px] xs:w-[216px] py-2 px-2  text-gray-100 border-secondary-100 rounded-lg outline-none border-2 font-medium  xs:text-[20px]'
                       required
+                      onChange={(e) => setLastname(e.target.value)}                      
                       />
 
                       <input 
                       type='text'
                       name='name'
-                      placeholder="Full names"
+                      placeholder="First Name"
                       className='mt-2 h-[57px] xs:w-[216px] py-2 px-2  text-gray-100 border-secondary-100 rounded-lg outline-none border-2 font-medium  xs:text-[20px]'
                       required
+                      onChange={(e) => setFirstname(e.target.value)}
                       />                    
 
                       </div>
@@ -62,13 +99,14 @@ const SignUp: React.FC = (props: Props) => {
 
                     <div className='flex gap-4 mx-auto w-5/6 mt-6'>
                       <div className=''>
-                        <label className='text-gray-100'>User name</label><br />
+                        <label className='text-gray-100'>Email</label><br />
                           <input 
                           type='email'
                           name='email'
                           placeholder="Email Address"
                           className=' h-[57px] xs:w-[216px] py-2 px-2  text-gray-100 border-secondary-100 rounded-lg outline-none border-2 font-medium  xs:text-[20px]'
                           required
+                          onChange={(e) => setEmail(e.target.value)}
                           />
 
                       </div>
@@ -81,6 +119,7 @@ const SignUp: React.FC = (props: Props) => {
                           placeholder="Contact Number"
                           className=' h-[57px] xs:w-[216px] py-2 px-2  text-gray-100 border-secondary-100 rounded-lg outline-none border-2 font-medium  xs:text-[20px]'
                           required
+                          onChange={(e) => setPhoneNumber(e.target.value)}
                           />
 
                       </div>
@@ -95,6 +134,7 @@ const SignUp: React.FC = (props: Props) => {
                           placeholder="Password"
                           className=' h-[57px] xs:w-full py-2 px-2  text-gray-100 border-secondary-100 rounded-lg outline-none border-2 font-medium  xs:text-[20px]'
                           required
+                          onChange={(e) => setPassword(e.target.value)}
                           />
 
                     </div>
@@ -106,13 +146,13 @@ const SignUp: React.FC = (props: Props) => {
                           placeholder="Password"
                           className=' h-[57px] xs:w-full py-2 px-2  text-gray-100 border-secondary-100 rounded-lg outline-none border-2 font-medium  xs:text-[20px]'
                           required
+                          onChange={(e) => setConfirmPassword(e.target.value)}
                           />
 
-                    </div>
-                   
+                    </div>                  
                   
 
-                    <button className=' mt-6 text-primary-100 bg-secondary-100 rounded-lg w-[451px] h-[54px]'>
+                    <button type='submit' className=' mt-6 text-primary-100 bg-secondary-100 rounded-lg w-[451px] h-[54px]'>
                     Sign up
                     </button>
                    </div>

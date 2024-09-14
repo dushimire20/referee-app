@@ -19,7 +19,7 @@ const Home: React.FC = () => {
   return (
     <Layout >
       <div>
-        <section className="py-10  md:pb-0  items-center justify-center h-full w-full bg-[url('@/assets/HeroImage.png')] bg-cover">
+        <section className="py-10  md:pb-0  mx-0 items-center justify-center h-full w-full bg-[url('@/assets/HeroImage.png')] bg-cover">
           <div className="mx-auto items-center justify-center w-5/6  ">
             <div className=" mt-16 md:mt-[195px] py-8 md:w-[904px]">
               <p
