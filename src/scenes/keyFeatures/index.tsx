@@ -1,4 +1,3 @@
-import React from 'react';
 import Line from "@/assets/Line7.png";
 import BasketBall from "@/assets/BasketBall.png";
 import { CheckIcon } from '@heroicons/react/20/solid';
@@ -10,9 +9,8 @@ import Slider from '@/components/Slider';
 import TestimonialCard from '@/components/TestimonialCard';
 import testmonials from "@/data/testimonials.json";
 
-type Props = {}
 
-const KeyFeatures = (props: Props) => {
+const KeyFeatures = () => {
   return (
     <div className=" pt-6 justify-center mx-auto">
 

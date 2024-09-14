@@ -8,8 +8,8 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   return (
     <div>
-        <Navbar isTopOfPage={false} />
-        <main> {children} </main>
+        <Navbar />
+        <main > {children} </main>
     </div>
   )
 }

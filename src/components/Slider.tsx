@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import useEmblaCarousel, { EmblaOptionsType } from "embla-carousel-react";
 
 type Props = { options?: EmblaOptionsType } & PropsWithChildren;
