@@ -1,12 +1,11 @@
 import Layout from '@/components/Layout';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Slay from "@/assets/Saly.png";
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-type Props = {}
 
-const SignIn = (props: Props) => {
+const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();

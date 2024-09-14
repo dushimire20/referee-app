@@ -1,10 +1,8 @@
-import React from 'react';
 import Line from "@/assets/Line7.png";
 import GoalImage from "@/assets/GoalImage.png";
 
-type Props = {}
 
-const OurGoals = (props: Props) => {
+const OurGoals = () => {
   return (
     <div className="w-5/6 pt-6 justify-center mx-auto">
         <div className=" w-[267px] h-[60.46px] mt-8 mx-auto ">

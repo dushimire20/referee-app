@@ -1,10 +1,7 @@
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
-import React from 'react'
 import { Link } from 'react-router-dom';
 
-type Props = {}
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <div className="w-5/6 mx-auto justify-center mt-24 font-bold">
         <div className='md:flex md:gap-32'>

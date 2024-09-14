@@ -1,9 +1,7 @@
-import React from 'react';
 import Line from "@/assets/Line7.png";
 
-type Props = {}
 
-const ContactUs = (props: Props) => {
+const ContactUs = () => {
   return (
     <div className="w-5/6 mx-auto justify-center  ">
         <div className=" w-[267px] h-[60.46px] mt-8 mx-auto py-7 ">

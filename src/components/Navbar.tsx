@@ -1,8 +1,4 @@
-import React from 'react'
-
-type Props = {}
-
-function Navbar({}: Props) {
+function Navbar() {
   return (
     <div>Navbar</div>
   )

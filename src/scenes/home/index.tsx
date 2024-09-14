@@ -13,8 +13,6 @@ import ContactUs from '../contactUs';
 import Footer from '../footer';
 
 
-type Props = {}
-
 const Home: React.FC = () => {
   return (
     <Layout >

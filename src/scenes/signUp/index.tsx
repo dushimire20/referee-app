@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-type Props = {}
 
-const SignUp: React.FC = (props: Props) => {
+const SignUp: React.FC = () => {
    const [firstName, setFirstname] = useState('');
    const [lastName, setLastname] = useState('');
    const [email, setEmail] = useState('');
