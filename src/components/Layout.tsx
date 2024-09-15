@@ -1,17 +1,16 @@
-import React from 'react'
 import Navbar from '@/scenes/navbar'
+import { Outlet } from 'react-router-dom'
 
-type Props = {
-    children: React.ReactNode
+
+const Layout = () => {
+	return (
+		<div>
+			<Navbar />
+			<main>
+				<Outlet />
+			</main>
+		</div>
+	)
 }
-const Layout: React.FC<Props> = ({ children }) => {
 
-  return (
-    <div>
-        <Navbar />
-        <main > {children} </main>
-    </div>
-  )
-}
-
-export default Layout
+export default Layout;
