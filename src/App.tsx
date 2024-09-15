@@ -6,32 +6,30 @@ import OurGoals from "./scenes/ourGoals";
 import KeyFeatures from "./scenes/keyFeatures";
 import Dashboard from "./scenes/dashboard";
 import ForgotPassword from "./scenes/forgotPassword";
+import Layout from "./components/Layout";
+import DashboardLayout from "./components/DashboardLayout";
 
 
 function App() {
-
 	return (
 		<>
 			<Router>
 				<Routes>
-					<Route path="/" Component={Home} />
-					<Route path="/signUp" Component={SignUp} />
-					<Route path="/login" Component={SignIn} />
-					<Route path="/forgotPassword" Component={ForgotPassword} />
-					<Route path="/goals" Component={OurGoals} />
-					<Route path="/features" Component={KeyFeatures} />
-					<Route path="/dashboard" Component={Dashboard} />
-
+					<Route path="/" element={<Layout />}>
+						<Route index element={<Home />} />
+						<Route path="/signUp" element={<SignUp />} />
+						<Route path="/login" element={<SignIn />} />
+						<Route path="/forgotPassword" element={<ForgotPassword />} />
+						<Route path="/goals" element={<OurGoals />} />
+						<Route path="/features" element={<KeyFeatures />} />
+					</Route>
+					<Route path="/dashboard/" element={<DashboardLayout />} >
+						<Route index element={<Dashboard />} />
+					</Route>
 				</Routes>
-
-				<Routes>
-
-				</Routes>
-
 			</Router>
-
 		</>
 	)
 }
 
-export default App
+export default App;
