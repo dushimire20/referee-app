@@ -5,7 +5,7 @@ import GoalImage from "@/assets/GoalImage.png";
 const OurGoals = () => {
 	return (
 		<div className="w-5/6 pt-6 justify-center mx-auto">
-			<div className=" w-[267px] h-[60.46px] mt-8 mx-auto ">
+			<div className=" w-[267px] h-[60.46px] mt-16 	 mx-auto ">
 				<p className="text-[32px] leading-[44.8px] font-normal text-gray-100 text-center">Our Goal</p>
 				<img alt='Line' src={Line} />
 

@@ -14,7 +14,7 @@ const KeyFeatures = () => {
 	return (
 		<div className=" pt-6 justify-center mx-auto">
 
-			<div className=" md:w-[267px] md:h-[60.46px] mt-8 mx-auto  text-center justify-center items-center">
+			<div className=" md:w-[267px] md:h-[60.46px] mt-16 mx-auto  text-center justify-center items-center">
 				<p className="text-[32px] leading-[44.8px] font-normal text-gray-100 text-center">Key features</p>
 				<img alt='Line' src={Line} className=' ml-24 md:ml-0 ' />
 

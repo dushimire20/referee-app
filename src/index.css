@@ -12,5 +12,18 @@ body,
     width: 100%;
     font-family: "Poppins", sans-serif;
     @apply text-primary-100 font-poppins;
-    
+}
+
+html {
+    scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+    width: 14px;
+    border-radius: 10px;
+    background: #F8F4EA;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #881337;
+    border-radius: 10px;
 }

@@ -26,7 +26,7 @@ const Home = () => {
 
 						<Link
 							className="text-[20px] leading-[24px] font-medium  bg-secondary-100 flex gap-2 w-[303px] justify-center py-4 rounded-xl mt-4"
-							to={"/signIn"}
+							to={"/signUp"}
 
 						>
 							Get Started <span><ArrowRightIcon className="h-6 w-6 text-primary-100" /> </span>

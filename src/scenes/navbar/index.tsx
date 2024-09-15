@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import Logo from "@/assets/Logo.png";
 
 const Navbar = () => {
 	const [click, setClick] = useState(false);
@@ -30,13 +29,14 @@ const Navbar = () => {
 	return (
 		<nav>
 			<div
-				className={`${flexBetween} fixed top-0 z-30 w-full py-[20px] ${isScrolled ? "bg-secondary-100 bg-opacity-90" : "bg-transparent"
-					}`}
+				className={`${flexBetween} fixed top-0 z-30 w-full py-[20px] ${isScrolled ? "bg-secondary-100 bg-opacity-90" : (window.location.pathname === "/" ? "bg-transparent" : "bg-secondary-100")}`}
 			>
 				<div className={`${flexBetween} mx-auto w-5/6`}>
 					<div className={`${flexBetween} w-full gap-16`}>
 						{/* left side */}
-						<p className="font-poppins font-bold text-[32px] leading-[35.2px]">ARAB.</p>
+						<NavLink to="/">
+							<p className="font-poppins font-bold text-[32px] leading-[35.2px]">REFEREE.</p>
+						</NavLink>
 
 						{/* Right Side */}
 						{isAboveMediumScreens ? (
