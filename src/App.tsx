@@ -1,4 +1,4 @@
-import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "@/scenes/home";
 import SignUp from "@/scenes/signUp";
 import SignIn from "./scenes/signIn";
@@ -9,29 +9,29 @@ import ForgotPassword from "./scenes/forgotPassword";
 
 
 function App() {
-  
-  return (
-    <>
-    <Router>
-      <Routes>
-        <Route path="/" Component={Home} />
-        <Route path="/signUp" Component={SignUp} />
-        <Route path="/login" Component={SignIn} />
-        <Route path="/forgotPassword" Component={ForgotPassword} />
-        <Route path="/goals" Component={OurGoals} />
-        <Route path="/features" Component={KeyFeatures} />
-        <Route path="/dashboard" Component={Dashboard} />
 
-      </Routes> 
+	return (
+		<>
+			<Router>
+				<Routes>
+					<Route path="/" Component={Home} />
+					<Route path="/signUp" Component={SignUp} />
+					<Route path="/login" Component={SignIn} />
+					<Route path="/forgotPassword" Component={ForgotPassword} />
+					<Route path="/goals" Component={OurGoals} />
+					<Route path="/features" Component={KeyFeatures} />
+					<Route path="/dashboard" Component={Dashboard} />
 
-      <Routes>
-        
-      </Routes>
-      
-    </Router>
-    
-    </>
-  )
+				</Routes>
+
+				<Routes>
+
+				</Routes>
+
+			</Router>
+
+		</>
+	)
 }
 
 export default App
