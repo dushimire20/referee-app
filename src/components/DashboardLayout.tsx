@@ -8,9 +8,9 @@ const DashboardLayout = () => {
 			<Sidebar />
 
 			<div className="flex flex-col flex-1">
-				<Navbar/>
+				<Navbar />
 				<main className="flex-1 overflow-y-auto">
-					<Outlet/>
+					<Outlet />
 				</main>
 			</div>
 		</div>
