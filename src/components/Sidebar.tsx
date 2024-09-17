@@ -11,11 +11,11 @@ function Sidebar() {
 
     const sideLinks = [
         { icon: <MdOutlineDashboard size={24} />, title: "Overview", to: "/dashboard" },
-        { icon: <FaRegClock size={24} />, title: "Schedule", to: "/schedule" },
-        { icon: <FaClipboardList size={24} />, title: "Availability", to: "/availability" },
-        { icon: <FaWallet size={24} />, title: "Payments", to: "/payments" },
-        { icon: <FaUser size={24} />, title: "Profile", to: "/profile" },
-        { icon: <FaComments size={24} />, title: "Feedback", to: "/feedback" }
+        { icon: <FaRegClock size={24} />, title: "Schedule", to: "/dashboard/schedule" },
+        { icon: <FaClipboardList size={24} />, title: "Availability", to: "/dashboard/availability" },
+        { icon: <FaWallet size={24} />, title: "Payments", to: "/dashboard/payments" },
+        { icon: <FaUser size={24} />, title: "Profile", to: "/dashboard/profile" },
+        { icon: <FaComments size={24} />, title: "Feedback", to: "/dashboard/feedback" }
     ];
 
     const handleMouseEnter = (title: string, position: string) => {
