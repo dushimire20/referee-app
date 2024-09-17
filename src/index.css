@@ -35,7 +35,7 @@ html {
 }
 
 .rbc-time-slot {
-    @apply border-t border-gray-200;
+    @apply border-none;
 }
 
 .rbc-time-header-cell {
