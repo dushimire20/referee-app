@@ -1,14 +1,13 @@
 import { FaBell, FaQuestionCircle } from 'react-icons/fa';
 
-
 function Navbar() {
 	return (
-		<nav className="flex sticky top-0 w-full justify-between items-center bg-white border-b  p-4 text-xs">
-			<div>
+		<nav className="flex sticky top-0 w-full justify-between items-center bg-white border-b p-4 text-xs z-10">
+			<div className="flex-1">
 				<input
 					type="text"
 					placeholder="Search..."
-					className="border px-2 py-1 rounded-lg"
+					className="border px-2 py-1 rounded-lg w-full max-w-xs"
 				/>
 			</div>
 			<div className="flex items-center gap-4">
@@ -20,7 +19,7 @@ function Navbar() {
 						alt="User avatar"
 						className="rounded-full w-10 h-10"
 					/>
-					<div>
+					<div className="hidden sm:block">
 						<p className="font-semibold">Eric ISHIMWE</p>
 						<p className="text-gray-400">Referee</p>
 					</div>

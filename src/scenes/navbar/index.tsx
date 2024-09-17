@@ -46,6 +46,9 @@ const Navbar = () => {
 									<NavLink to="/" onClick={handleClick}>
 										Home
 									</NavLink>
+									<NavLink to="/dashboard" onClick={handleClick}>
+										Manage
+									</NavLink>
 									<NavLink to="/goals" onClick={handleClick}>
 										Our Goal
 									</NavLink>
