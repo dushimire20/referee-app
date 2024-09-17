@@ -4,14 +4,13 @@ import Sidebar from "./Sidebar"
 
 const DashboardLayout = () => {
 	return (
-		<div className="flex h-screen w-screen text-black">
+		<div className="flex h-screen max-w-screen text-black">
 			<Sidebar />
 
 			<div className="flex flex-col flex-1">
-
-				<Navbar />
-				<main>
-					<Outlet />
+				<Navbar/>
+				<main className="flex-1 overflow-y-auto">
+					<Outlet/>
 				</main>
 			</div>
 		</div>
