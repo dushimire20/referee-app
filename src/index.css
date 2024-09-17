@@ -18,6 +18,46 @@ html {
     scroll-behavior: smooth;
 }
 
+/*.rbc-toolbar {*/
+/*    @apply bg-white border-b border-gray-200 p-4 rounded-t-lg;*/
+/*}*/
+
+/*.rbc-header {*/
+/*    @apply text-gray-700 font-bold;*/
+/*}*/
+
+.rbc-event {
+    @apply bg-gray-500 text-white rounded-lg p-2;
+}
+
+.rbc-day-bg {
+    @apply bg-gray-50;
+}
+
+.rbc-time-slot {
+    @apply border-t border-gray-200;
+}
+
+.rbc-time-header-cell {
+    @apply bg-transparent h-40 text-gray-600;
+}
+
+.rbc-time-content {
+    @apply border-none;
+}
+
+.rbc-event-content strong {
+    @apply text-sm;
+}
+
+.rbc-event-content div {
+    @apply text-xs text-gray-300;
+}
+
+.rbc-event-label {
+    @apply text-xs text-gray-300;
+}
+
 ::-webkit-scrollbar {
     width: 14px;
     border-radius: 10px;
