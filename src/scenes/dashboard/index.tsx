@@ -126,7 +126,7 @@ const DashboardHome = () => {
                         <h2 className="text-xl font-semibold">Month Events</h2>
                         <div className="flex flex-col justify-between">
                             <Calendar
-                                onChange={(value: Date | Date[], event: MouseEvent<HTMLButtonElement, MouseEvent>) => setDate(Array.isArray(value) ? value[0] : value)}
+                                onChange={(value: Date | Date[]) => setDate(Array.isArray(value) ? value[0] : value)}
                                 value={date}
                                 tileContent={tileContent}
                                 className="border-none"
