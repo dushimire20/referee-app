@@ -29,7 +29,7 @@ const Navbar = () => {
 	return (
 		<nav>
 			<div
-				className={`${flexBetween} fixed top-0 z-30 w-full py-[20px] ${isScrolled ? "bg-secondary-100 bg-opacity-90" : (window.location.pathname === "/" ? "bg-transparent" : "bg-secondary-100")}`}
+				className={`${flexBetween} fixed top-0 z-30 max-w-full py-[20px] ${isScrolled ? "bg-secondary-100 bg-opacity-90" : (window.location.pathname === "/" ? "bg-transparent" : "bg-secondary-100")}`}
 			>
 				<div className={`${flexBetween} mx-auto w-5/6`}>
 					<div className={`${flexBetween} w-full gap-16`}>

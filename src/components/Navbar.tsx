@@ -3,13 +3,13 @@ import {FaBell, FaQuestionCircle, FaSearch, FaUser} from 'react-icons/fa';
 function Navbar() {
     return (
         <nav className="flex flex-wrap sticky top-0 w-full justify-between items-center bg-white border-b p-4 text-xs">
-            <div className="flex-1 hidden">
+            <div className="flex-1 hidden md:flex">
                 <div className="relative">
                     <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
                         type="text"
                         placeholder="Search..."
-                        className="border bg-gray-50 px-2 py-1 pl-8 rounded-lg w-full max-w-xs focus:outline-none"
+                        className="border bg-gray-50 px-2 py-2 pl-8 rounded-lg w-full max-w-xs focus:outline-none"
                     />
                 </div>
             </div>
