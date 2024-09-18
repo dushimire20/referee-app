@@ -17,6 +17,91 @@ body,
 html {
     scroll-behavior: smooth;
 }
+
+/*.rbc-toolbar {*/
+/*    @apply bg-white border-b border-gray-200 p-4 rounded-t-lg;*/
+/*}*/
+
+.rbc-event {
+    @apply bg-secondary-100 bg-opacity-60 backdrop-blur border-none text-white rounded-lg p-2 !important;
+}
+
+.rbc-selected {
+    @apply bg-secondary-100 bg-opacity-80 backdrop-blur focus:border-gray-200 border-none text-white rounded-lg p-2 !important;
+}
+
+.rbc-day-bg {
+    @apply bg-gray-50;
+}
+
+.rbc-time-slot {
+    @apply border-none;
+}
+
+.rbc-allday-cell {
+    @apply hidden;
+}
+
+.rbc-time-header-content {
+    @apply h-16;
+}
+
+.rbc-time-header-cell {
+    @apply bg-transparent h-40 text-gray-600;
+}
+
+.rbc-header {
+    @apply border-none;
+}
+
+.rbc-time-gutter .rbc-timeslot-group {
+    @apply border-b-0;
+}
+
+.rbc-day-slot {
+    @apply border-t-[1px];
+}
+
+.rbc-today {
+    @apply bg-gray-500 bg-opacity-10;
+}
+
+.rbc-time-header-cell {
+    @apply divide-none border-none;
+}
+
+.rbc-time-header-content {
+    @apply border-none;
+}
+
+.rbc-overflowing {
+    @apply border-none !important;
+}
+
+.rbc-time-header-cell {
+    @apply border-none;
+}
+
+.rbc-time-content {
+    @apply border-none;
+}
+
+.rbc-event-content strong {
+    @apply text-sm border-none;
+}
+
+.rbc-event-content div {
+    @apply text-xs text-gray-300 border-none;
+}
+
+.rbc-event-label {
+    @apply text-xs text-gray-300 border-none;
+}
+
+.rbc-time-view {
+    @apply border-none;
+}
+
 ::-webkit-scrollbar {
     width: 14px;
     border-radius: 10px;
