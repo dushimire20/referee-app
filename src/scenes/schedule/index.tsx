@@ -57,8 +57,8 @@ const Schedule = () => {
     const CustomDayHeader = ({ label }: { label: string }) => {
         const [day, date] = label.split('\n');
         return (
-            <div className="items-center text-center">
-                <div>{day}</div>
+            <div className="items-center text-center font-medium text-lg">
+                <div className="text-gray-400">{day}</div>
                 <div>{date}</div>
             </div>
         );
@@ -76,7 +76,7 @@ const Schedule = () => {
                 localizer={localizer}
                 onView={setView}
             />
-            <div className="my-calendar mx-auto mt-10">
+            <div className="my-calendar mx-auto mt-2">
                 <Calendar
                     localizer={localizer}
                     events={events}
