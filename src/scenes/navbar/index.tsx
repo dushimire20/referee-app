@@ -86,6 +86,7 @@ const Navbar = () => {
 						{/* {menu items} */}
 						<div className="ml-[33%] flex  flex-col gap-10 text-2xl font-poppins ">
 							<NavLink to="/">Home</NavLink>
+							<NavLink to="/dashboard">Manage</NavLink>
 							<NavLink to="/">Our Goal</NavLink>
 							<NavLink to="/">Key features</NavLink>
 							<NavLink to="/login" onClick={handleClick}>
