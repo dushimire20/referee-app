@@ -77,7 +77,7 @@ const Payments = () => {
     };
 
     return (
-        <div className="p-6 min-h-screen flex">
+        <div className="p-8 min-h-screen flex">
             <div className="flex flex-col md:flex-row w-full space-y-6 md:space-x-6 md:space-y-0 md:divide-x">
                 <div className="w-full md:w-3/4 space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
