@@ -77,7 +77,7 @@ const Payments = () => {
     };
 
     return (
-        <div className="p-8 min-h-screen flex">
+        <div className="p-8 max-h-screen flex">
             <div className="flex flex-col md:flex-row w-full space-y-6 md:space-x-6 md:space-y-0 md:divide-x">
                 <div className="w-full md:w-3/4 space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -100,8 +100,8 @@ const Payments = () => {
                     <h3 className="text-lg font-semibold">Payment History</h3>
                     <div className="flex flex-col">
                         <div className="-m-1.5 overflow-x-auto">
-                            <div className="p-1.5 min-w-full inline-block align-middle">
-                                <table className="min-w-full bg-white shadow-md rounded-xl overflow-hidden text-xs">
+                            <div className="p-1.5 w-full overflow-x-auto inline-block align-middle">
+                                <table className="w-full bg-white shadow-md rounded-xl overflow-hidden text-xs">
                                     <thead className="text-gray-700 bg-[#E5ECF6] overflow-x-auto">
                                         <tr>
                                             <th className="py-3 px-4 text-left">
@@ -136,8 +136,8 @@ const Payments = () => {
                     <h3 className="text-lg font-semibold">Pending Payments</h3>
                     <div className="flex flex-col">
                         <div className="-m-1.5 overflow-x-auto">
-                            <div className="p-1.5 min-w-full inline-block align-middle">
-                                <table className="min-w-full shadow-md rounded-xl overflow-hidden text-xs z-10">
+                            <div className="p-1.5 w-full inline-block align-middle overflow-x-auto">
+                                <table className="w-full shadow-md rounded-xl overflow-hidden text-xs z-10">
                                     <thead className="text-gray-700 bg-[#E5ECF6] overflow-x-auto">
                                         <tr>
                                             <th className="py-3 px-4 text-left">
@@ -171,7 +171,7 @@ const Payments = () => {
                 </div>
 
                 <div className="w-full md:w-1/4 space-y-6">
-                    <div className="bg-white p-6">
+                    <div className="bg-white md:p-6">
                         <h3 className="text-lg font-semibold">Payment method</h3>
                         <div className="flex justify-between items-center">
                             <div className="mt-4 inline-flex">

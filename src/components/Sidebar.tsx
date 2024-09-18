@@ -44,7 +44,7 @@ function Sidebar() {
                             <li key={i} className="relative">
                                 <Link
                                     to={link.to}
-                                    className={`flex items-center gap-4 text-gray-500 hover:text-black ${isExpanded ? 'p-4' : 'justify-center p-1'} ${isActive ? 'bg-secondary-100 bg-opacity-20 text-secondary-100 rounded-lg' : ''}`}
+                                    className={`flex items-center gap-4 text-gray-500 hover:text-black ${isExpanded ? 'p-4' : 'justify-center px-1 py-1 xs:px-2 xs:py-2 sm:py-2.5'} ${isActive ? 'bg-secondary-100 bg-opacity-20 text-secondary-100 rounded-lg' : ''}`}
                                     onMouseEnter={() => handleMouseEnter(link.title, 'left-10')}
                                     onMouseLeave={handleMouseLeave}
                                 >
