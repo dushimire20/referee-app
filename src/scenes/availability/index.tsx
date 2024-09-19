@@ -1,6 +1,10 @@
+import CalendarPage from '@/components/CalendarPage';
+
 const Availability = () => {
   return (
-    <div>Availability</div>
+    <div>
+        <CalendarPage />
+    </div>
   )
 }
 
