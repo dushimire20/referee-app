@@ -1,34 +1,30 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import styles from '@/assets/css/calendarStyles.module.css';
+import 'react-calendar/dist/Calendar.css';
+import '@/assets/css/calendarStyles.css';
 import CalendarToolbar from './CalendarToolbar';
 import CustomHeader from './CustomHeader';
-
 const CalendarPage: React.FC = () => {
     const [value, setValue] = useState(new Date());
     const [availableDates, setAvailableDates] = useState<string[]>(['2024-09-22', '2024-09-27']);
-
     const handleDateChange = (date: Date) => {
         const formattedDate = date.toISOString().split('T')[0];
-
         if (availableDates.includes(formattedDate)) {
             setAvailableDates(availableDates.filter((d) => d !== formattedDate));
         } else {
             setAvailableDates([...availableDates, formattedDate]);
         }
     };
-
     const tileClassName = ({ date }: { date: Date }) => {
         const formattedDate = date.toISOString().split('T')[0];
         if (availableDates.includes(formattedDate)) {
-            return styles.availableDate;
+            return 'bg-[#95C639] text-white';
         }
         if (formattedDate === new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().split('T')[0]) {
-            return styles.currentDate;
+            return 'bg-secondary-100 bg-opacity-30 text-black font-bold';
         }
         return '';
     };
-
     const handleNavigate = (action: 'PREV' | 'NEXT') => {
         const newDate = new Date(value);
         if (action === 'PREV') {
@@ -38,17 +34,14 @@ const CalendarPage: React.FC = () => {
         }
         setValue(newDate);
     };
-
     const handleToday = () => {
         setValue(new Date());
     };
-
     const handleMonthSelect = (month: number) => {
         const newDate = new Date(value);
         newDate.setMonth(month);
         setValue(newDate);
     };
-
     return (
         <div className="p-8">
             <div className="flex justify-between items-start mt-4 divide-x">
@@ -66,7 +59,6 @@ const CalendarPage: React.FC = () => {
                         tileClassName={tileClassName}
                         onClickDay={handleDateChange}
                         showNavigation={false}
-                        className={styles.reactCalendar}
                         formatShortWeekday={(_locale, date) => date.toLocaleString('default', { weekday: 'long' })}
                     />
                 </div>
@@ -74,11 +66,11 @@ const CalendarPage: React.FC = () => {
                     <div className="mb-4">
                         <h3 className="text-xl font-bold">Legend Key</h3>
                         <div className="flex items-center mt-2">
-                            <span className={`${styles.legendKey} ${styles.availableDate}`}></span>
+                            <span className="w-6 h-6 bg-[#95C639] inline-block mr-2"></span>
                             <span>Available</span>
                         </div>
                         <div className="flex items-center mt-2">
-                            <span className={`${styles.legendKey} ${styles.currentDate}`}></span>
+                            <span className="w-6 h-6 bg-secondary-100 bg-opacity-30 inline-block mr-2"></span>
                             <span>Current date</span>
                         </div>
                     </div>
@@ -92,5 +84,4 @@ const CalendarPage: React.FC = () => {
         </div>
     );
 };
-
 export default CalendarPage;
