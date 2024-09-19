@@ -14,6 +14,7 @@ import Payments from "@/scenes/payments";
 import Profile from "@/scenes/profile";
 import Feedback from "@/scenes/feedback";
 import AdminOverview from "@/components/AdminOverview.tsx";
+import Referees from "@/components/Referees.tsx";
 
 const App = () => {
 	return (
@@ -38,7 +39,7 @@ const App = () => {
 				</Route>
 				<Route path="admin" element={<DashboardLayout />}>
 					<Route index element={<AdminOverview />} />
-					<Route path="referees" element={<Schedule />} />
+					<Route path="referees" element={<Referees />} />
 					<Route path="games" element={<Availability />} />
 					<Route path="payments" element={<Payments />} />
 					<Route path="profile" element={<Profile />} />
