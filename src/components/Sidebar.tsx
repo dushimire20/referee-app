@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { FaRegClock, FaUser, FaWallet, FaClipboardList, FaComments, FaBars } from 'react-icons/fa';
 import { MdOutlineDashboard } from 'react-icons/md';
+import { GiWhistle } from "react-icons/gi";
+import { FaBasketball } from "react-icons/fa6";
 import Tooltip from './Tooltip';
 
 function Sidebar() {
     const [isExpanded, setIsExpanded] = useState(false);
     const [tooltip, setTooltip] = useState({ show: false, text: '', position: '' });
+    const [userRole, setUserRole] = useState<string | null>(null);
     const location = useLocation();
 
-    const sideLinks = [
+    useEffect(() => {
+        const storedUserRole = localStorage.getItem('userRole');
+        if (storedUserRole) {
+            setUserRole(storedUserRole);
+        }
+    }, []);
+
+    const refereeLinks = [
         { icon: <MdOutlineDashboard size={24} />, title: "Overview", to: "/dashboard" },
         { icon: <FaRegClock size={24} />, title: "Schedule", to: "/dashboard/schedule" },
         { icon: <FaClipboardList size={24} />, title: "Availability", to: "/dashboard/availability" },
@@ -17,6 +27,17 @@ function Sidebar() {
         { icon: <FaUser size={24} />, title: "Profile", to: "/dashboard/profile" },
         { icon: <FaComments size={24} />, title: "Feedback", to: "/dashboard/feedback" }
     ];
+
+    const adminLinks = [
+        { icon: <MdOutlineDashboard size={24} />, title: "Admin Overview", to: "/admin" },
+        { icon: <GiWhistle size={24} />, title: "Referees", to: "/admin/referees" },
+        { icon: <FaBasketball size={24} />, title: "Games", to: "/admin/games" },
+        { icon: <FaWallet size={24} />, title: "Manage Referees", to: "/admin/payments" },
+        { icon: <FaUser size={24} />, title: "Profile", to: "/admin/profile" },
+        { icon: <FaComments size={24} />, title: "Feedback", to: "/admin/feedback" }
+    ];
+
+    const sideLinks = userRole === 'admin' ? adminLinks : refereeLinks;
 
     const handleMouseEnter = (title: string, position: string) => {
         if (!isExpanded) {
