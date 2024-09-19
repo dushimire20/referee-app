@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { FaRegClock, FaUser, FaWallet, FaClipboardList, FaComments, FaBars } from 'react-icons/fa';
 import { MdOutlineDashboard } from 'react-icons/md';
+import { GiWhistle } from "react-icons/gi";
+import { FaBasketball } from "react-icons/fa6";
 import Tooltip from './Tooltip';
 
 function Sidebar() {
@@ -28,9 +30,9 @@ function Sidebar() {
 
     const adminLinks = [
         { icon: <MdOutlineDashboard size={24} />, title: "Admin Overview", to: "/admin" },
-        { icon: <FaUser size={24} />, title: "Referees", to: "/admin/referees" },
-        { icon: <FaUser size={24} />, title: "Games", to: "/admin/games" },
-        { icon: <FaUser size={24} />, title: "Manage Referees", to: "/admin/payments" },
+        { icon: <GiWhistle size={24} />, title: "Referees", to: "/admin/referees" },
+        { icon: <FaBasketball size={24} />, title: "Games", to: "/admin/games" },
+        { icon: <FaWallet size={24} />, title: "Manage Referees", to: "/admin/payments" },
         { icon: <FaUser size={24} />, title: "Profile", to: "/admin/profile" },
         { icon: <FaComments size={24} />, title: "Feedback", to: "/admin/feedback" }
     ];
