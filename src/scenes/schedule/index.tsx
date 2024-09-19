@@ -3,7 +3,7 @@ import { Calendar, momentLocalizer, Event, NavigateAction, View } from 'react-bi
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CustomToolbar from '../../components/CustomToolbar';
-import EventDetailsModal from '../../components/EventDetailsModal'; // Adjust the import path as necessary
+import EventDetailsModal from '../../components/EventDetailsModal';
 
 const localizer = momentLocalizer(moment);
 
