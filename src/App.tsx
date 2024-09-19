@@ -15,6 +15,7 @@ import Profile from "@/scenes/profile";
 import Feedback from "@/scenes/feedback";
 import AdminOverview from "@/components/AdminOverview.tsx";
 import Referees from "@/components/Referees.tsx";
+import GameManagement from "@/scenes/GameManagement.tsx";
 
 const App = () => {
 	return (
@@ -40,7 +41,7 @@ const App = () => {
 				<Route path="admin" element={<DashboardLayout />}>
 					<Route index element={<AdminOverview />} />
 					<Route path="referees" element={<Referees />} />
-					<Route path="games" element={<Availability />} />
+					<Route path="games" element={<GameManagement />} />
 					<Route path="payments" element={<Payments />} />
 					<Route path="profile" element={<Profile />} />
 					<Route path="feedback" element={<Feedback />} />
