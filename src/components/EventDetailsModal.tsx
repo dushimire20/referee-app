@@ -11,7 +11,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({event, onClose}) =
     if (!event) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center backdrop-filter backdrop-blur-sm">
             <div className="bg-white p-16 relative rounded-lg text-sm shadow-lg w-1/2 space-y-4 max-h-screen overflow-y-auto">
                 <button onClick={onClose}
                         className="h-8 w-8 absolute right-4 top-4 flex justify-center items-center bg-secondary-100 bg-opacity-50 text-white rounded-full">
