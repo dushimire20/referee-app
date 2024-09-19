@@ -1,20 +1,38 @@
-import { Outlet } from "react-router-dom"
-import Navbar from "./Navbar"
-import Sidebar from "./Sidebar"
+import React, { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+import UserRoleModal from './UserRoleModal';
 
-const DashboardLayout = () => {
-	return (
-		<div className="flex h-screen max-w-screen text-black">
-			<Sidebar />
+const DashboardLayout: React.FC = () => {
+    const [userRole, setUserRole] = useState<string | null>(null);
 
-			<div className="flex flex-col flex-1">
-				<Navbar />
-				<main className="flex-1 overflow-y-auto">
-					<Outlet />
-				</main>
-			</div>
-		</div>
-	)
-}
+    useEffect(() => {
+        const storedUserRole = localStorage.getItem('userRole');
+        if (storedUserRole) {
+            setUserRole(storedUserRole);
+        }
+    }, []);
 
-export default DashboardLayout
+    const handleSelectRole = (role: string) => {
+        setUserRole(role);
+    };
+
+    if (!userRole) {
+        return <UserRoleModal onSelectRole={handleSelectRole} />;
+    }
+
+    return (
+        <div className="flex h-screen max-w-screen text-black">
+            <Sidebar />
+            <div className="flex flex-col flex-1">
+                <Navbar />
+                <main className="flex-1 overflow-y-auto">
+                    <Outlet />
+                </main>
+            </div>
+        </div>
+    );
+};
+
+export default DashboardLayout;
