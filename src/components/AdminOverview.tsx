@@ -1,11 +1,10 @@
-// Constants for distribution ranges
 import React from "react";
 import {FaUser} from 'react-icons/fa';
 
+// Constants for distribution ranges
 const LOW = 30;
 const MEDIUM = 50;
 
-// Data arrays
 const upcomingGames = [
     {date: '1/1/23', time: '7PM', teams: 'Team A VS Team B', venue: 'BK Arena, Kigali'},
     {date: '3/1/23', time: '6PM', teams: 'Team A VS Team B', venue: 'BK Arena, Kigali'},
@@ -21,7 +20,6 @@ const referees = [
     {name: 'Jimmy KAREMERA', status: 'Available', avatar: 'https://via.placeholder.com/50'},
 ];
 
-// Reusable Distribution Component
 const StatusDistribution: React.FC<{ label: string, number: number }> = ({label, number}) => {
     let color = 'bg-[#BB8095]';
     if (number > LOW && number <= MEDIUM) color = 'bg-[#E3F5FF]';
