@@ -35,6 +35,14 @@ const App = () => {
 					<Route path="profile" element={<Profile />} />
 					<Route path="feedback" element={<Feedback />} />
 				</Route>
+				<Route path="admin" element={<DashboardLayout />}>
+					<Route index element={<DashboardHome />} />
+					<Route path="referees" element={<Schedule />} />
+					<Route path="games" element={<Availability />} />
+					<Route path="payments" element={<Payments />} />
+					<Route path="profile" element={<Profile />} />
+					<Route path="feedback" element={<Feedback />} />
+				</Route>
 			</Routes>
 		</Router>
 	);
