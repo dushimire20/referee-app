@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import './calendarStyles.css';
+import styles from '@/assets/css/calendarStyles.module.css';
 import CalendarToolbar from './CalendarToolbar';
 import CustomHeader from './CustomHeader';
 
@@ -22,10 +21,10 @@ const CalendarPage: React.FC = () => {
     const tileClassName = ({ date }: { date: Date }) => {
         const formattedDate = date.toISOString().split('T')[0];
         if (availableDates.includes(formattedDate)) {
-            return 'bg-[#95C639] text-white';
+            return styles.availableDate;
         }
         if (formattedDate === new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().split('T')[0]) {
-            return 'bg-secondary-100 bg-opacity-30 text-black font-bold';
+            return styles.currentDate;
         }
         return '';
     };
@@ -67,7 +66,7 @@ const CalendarPage: React.FC = () => {
                         tileClassName={tileClassName}
                         onClickDay={handleDateChange}
                         showNavigation={false}
-
+                        className={styles.reactCalendar}
                         formatShortWeekday={(_locale, date) => date.toLocaleString('default', { weekday: 'long' })}
                     />
                 </div>
@@ -75,11 +74,11 @@ const CalendarPage: React.FC = () => {
                     <div className="mb-4">
                         <h3 className="text-xl font-bold">Legend Key</h3>
                         <div className="flex items-center mt-2">
-                            <span className="w-6 h-6 bg-[#95C639] inline-block mr-2"></span>
+                            <span className={`${styles.legendKey} ${styles.availableDate}`}></span>
                             <span>Available</span>
                         </div>
                         <div className="flex items-center mt-2">
-                            <span className="w-6 h-6 bg-secondary-100 bg-opacity-30 inline-block mr-2"></span>
+                            <span className={`${styles.legendKey} ${styles.currentDate}`}></span>
                             <span>Current date</span>
                         </div>
                     </div>

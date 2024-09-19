@@ -1,10 +1,18 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import styles from '@/assets/css/homeCalendarStyles.module.css';
 import images from '@/constants/images';
 
 const DashboardHome = () => {
     const [date, setDate] = useState(new Date());
+    const [currentMonth, setCurrentMonth] = useState('');
+
+    useEffect(() => {
+        const month = date.toLocaleString('default', {month: 'long'});
+        setCurrentMonth(month);
+    }, [date]);
+
     const events = [
         {date: new Date(2024, 8, 1), title: 'Event 1'},
         {date: new Date(2024, 8, 3), title: 'Event 2'},
@@ -108,7 +116,8 @@ const DashboardHome = () => {
                             <div className="bg-secondary-100 bg-opacity-5 p-4 mt-4 rounded-lg shadow-md">
                                 <div key={i} className="flex items-center px-8 justify-between gap-4">
                                     <div className="inline-flex items-center">
-                                        <img src={notification.icon} alt="Notification Icon" className="w-10 h-10 mr-3"/>
+                                        <img src={notification.icon} alt="Notification Icon"
+                                             className="w-10 h-10 mr-3"/>
                                         <p className="font-semibold">{notification.title}:</p>
                                         <span>{notification.message}</span>
                                     </div>
@@ -123,13 +132,14 @@ const DashboardHome = () => {
                 <div>
                     {/* Calendar */}
                     <section className="flex flex-col">
-                        <h2 className="text-xl font-semibold">Month Events</h2>
+                        <h2 className="text-xl font-semibold">{currentMonth} Events</h2>
                         <div className="flex flex-col justify-between">
                             <Calendar
-                                onChange={(value: Date | Date[]) => setDate(Array.isArray(value) ? value[0] : value)}
+                                onChange={() => (value: Date | Date[]) => setDate(Array.isArray(value) ? value[0] : value)}
                                 value={date}
                                 tileContent={tileContent}
-                                className="border-none"
+                                showNavigation={false}
+                                className={styles.reactCalendar}
                                 formatShortWeekday={(locale, date) => date.toLocaleDateString(locale, {weekday: 'narrow'})}
                             />
                             <a href="#" className="text-red-500 mt-4">See Calendar</a>
