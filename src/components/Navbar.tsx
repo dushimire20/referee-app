@@ -28,14 +28,56 @@ function Navbar() {
                 </div>
             </div>
             <div className="flex items-center gap-4 mt-2 sm:mt-0 ml-auto">
-                <FaQuestionCircle size={20} className="cursor-pointer hidden sm:block" />
-                <FaBell size={20} className="cursor-pointer" />
-                <div className="flex items-center gap-2">
-                    <FaUser size={40} className="rounded-full w-9 h-9 py-2 bg-secondary-100 bg-opacity-5" />
-                    <div className="hidden sm:block">
-                        <p className="font-semibold">Eric ISHIMWE</p>
-                        <p className="text-gray-400">Referee</p>
+                <FaQuestionCircle size={20} className="cursor-pointer hidden sm:block"/>
+                <div className="relative" ref={bellRef}>
+                    <FaBell size={20} className="cursor-pointer" onClick={handleBellClick}/>
+                    {unreadNotifications > 0 && (
+                        <span className="absolute top-0 right-0 inline-block w-2 h-2 bg-red-600 rounded-full"></span>
+                    )}
+                    {showDropdown && (
+                        <div className="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-lg z-10">
+                            <div className="p-4 border-b">
+                                <h3 className="text-lg font-semibold">Notifications</h3>
+                            </div>
+                            <div className="max-h-64 overflow-y-auto">
+                                {notifications.map(notification => (
+                                    <div
+                                        key={notification.id}
+                                        className={`px-4 py-2 cursor-pointer hover:bg-secondary-100 hover:bg-opacity-5 ${notification.read ? 'text-gray-500' : 'text-black'}`}
+                                        onClick={() => handleNotificationClick(notification)}
+                                    >
+                                        <h4 className="font-semibold">{notification.title}</h4>
+                                        <p className="text-sm">{notification.content}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+                <div className="relative" ref={profileRef}>
+                    <div className="flex items-center gap-2 cursor-pointer" onClick={handleProfileClick}>
+                        <FaUser size={40} className="rounded-full w-9 h-9 py-2 bg-secondary-100 bg-opacity-5"/>
+                        <div className="hidden sm:block">
+                            <p className="font-semibold">Eric ISHIMWE</p>
+                            <p className="text-gray-400">Referee</p>
+                        </div>
                     </div>
+                    {showProfileDropdown && (
+                        <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10">
+                            <NavLink
+                                to={userRole === 'admin' ? '/admin/profile' : '/dashboard/profile'}
+                                className="block px-4 py-2 hover:bg-secondary-100 hover:bg-opacity-5"
+                            >
+                                Profile
+                            </NavLink>
+                            <button
+                                onClick={handleLogout}
+                                className="block w-full text-left px-4 py-2 hover:bg-secondary-100 hover:bg-opacity-5"
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </nav>
