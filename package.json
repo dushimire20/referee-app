@@ -13,6 +13,7 @@
     "@heroicons/react": "^2.0.18",
     "@types/react-big-calendar": "^1.8.11",
     "axios": "^1.7.5",
+    "embla-carousel-autoplay": "^8.3.0",
     "embla-carousel-react": "^8.0.0-rc15",
     "framer-motion": "^10.16.4",
     "moment": "^2.30.1",
