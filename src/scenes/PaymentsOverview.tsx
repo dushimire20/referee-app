@@ -86,7 +86,7 @@ const payments: Payment[] = [
     },
     {
         date: "Mar 23, 2022, 13:00 PM",
-        referee: "Eric HABIMANA",
+        referee: "Fiston Munyaneza",
         amount: "$1,623.00 USD",
         bankAccount: "****2332",
         status: "Succeeded",
@@ -101,7 +101,7 @@ const payments: Payment[] = [
         selected: false
     },
     {
-        date: "Mar 23, 2022, 13:00 PM",
+        date: "May 23, 2022, 13:00 PM",
         referee: "Eric HABIMANA",
         amount: "$1,623.00 USD",
         bankAccount: "****2332",
@@ -127,7 +127,12 @@ const PaymentsOverview: React.FC = () => {
 
     const filteredPayments = payments.filter(payment => {
         if (activeTab !== "All" && payment.status !== activeTab) return false;
-        return !(searchTerm && !payment.amount.toLowerCase().includes(searchTerm.toLowerCase()));
+        return !(searchTerm && !(
+            payment.amount.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            payment.referee.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            payment.date.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            payment.bankAccount.toLowerCase().includes(searchTerm.toLowerCase())
+        ));
     });
 
     const totalPages = Math.ceil(filteredPayments.length / paymentsPerPage);
@@ -195,7 +200,7 @@ const PaymentsOverview: React.FC = () => {
             </div>
 
             {/* Filters */}
-            <div className="flex text-sm justify-between items-center mb-4">
+            <div className="flex flex-col-reverse sm:flex-row text-sm justify-between items-start sm:items-center mb-4">
                 <div className="flex space-x-2">
                     <select className="bg-gray-50 p-2 rounded-lg border focus:outline-none">
                         <option>Date range</option>
@@ -210,7 +215,7 @@ const PaymentsOverview: React.FC = () => {
                         {/* More options */}
                     </select>
                 </div>
-                <div className="relative">
+                <div className="relative mb-2 sm:mb-0">
                     <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"/>
                     <input
                         type="text"
@@ -223,7 +228,7 @@ const PaymentsOverview: React.FC = () => {
             </div>
 
             {/* Payments Table */}
-            <table className="w-full text-sm table-auto bg-white shadow-md rounded-lg">
+            <table className="w-full text-sm table-auto bg-white shadow-md rounded-xl overflow-hidden">
                 <thead>
                 <tr className="bg-gray-50 text-left">
                     <th className="p-4">
@@ -283,14 +288,14 @@ const PaymentsOverview: React.FC = () => {
                 <span>Total of {filteredPayments.length} results were found (showing 10 per page)</span>
                 <div className="flex space-x-2">
                     <button
-                        className="border p-2 bg-white rounded-xl"
+                        className={`border p-2 bg-white rounded-xl ${currentPage === 1 ? "text-gray-400" : ""}`}
                         onClick={handlePreviousPage}
                         disabled={currentPage === 1}
                     >
                         Previous
                     </button>
                     <button
-                        className="border p-2 bg-white rounded-xl"
+                        className={`border p-2 bg-white rounded-xl ${currentPage === totalPages ? "text-gray-400" : ""}`}
                         onClick={handleNextPage}
                         disabled={currentPage === totalPages}
                     >

@@ -50,7 +50,7 @@ function Sidebar() {
     };
 
     return (
-        <aside className={`h-screen border-r px-4 transition-width duration-300 ${isExpanded ? 'w-64' : 'w-20'}`}>
+        <aside className={`min-h-screen border-r px-4 transition-width duration-300 ${isExpanded ? 'w-64' : 'w-20'}`}>
             <div className={`flex mb-8 w-full sticky top-0 py-5 items-center gap-5 ${isExpanded ? 'pl-4' : 'justify-center'}`}>
                 <FaBars size={24} onClick={() => setIsExpanded(!isExpanded)} className="cursor-pointer" />
                 <Link to="/" id="logo" className={`bg-white text-secondary-100 font-poppins font-bold text-2xl ${!isExpanded && 'hidden'}`}>
