@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import {FaEdit, FaTrash, FaExternalLinkAlt} from "react-icons/fa";
+import CreateGameModal from "@/components/CreateGameModal.tsx";
 
 type Game = {
     id: string;
@@ -63,6 +64,16 @@ const tournaments: Tournament[] = [
 ];
 
 const GameManagement: React.FC = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <div
             className="container mx-auto p-8 flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 md:divide-x">
@@ -70,10 +81,12 @@ const GameManagement: React.FC = () => {
                 {/* Game Management Header */}
                 <div className="flex flex-col md:flex-row justify-between items-center mb-4">
                     <h1 className="text-2xl text-center font-semibold mb-2 md:mb-0">Game management</h1>
-                    <button className="bg-secondary-100 text-white px-6 py-2 text-sm rounded-xl hover:bg-opacity-70">
+                    <button onClick={openModal}
+                            className="bg-secondary-100 text-white px-6 py-2 text-sm rounded-xl hover:bg-opacity-70">
                         Add a game +
                     </button>
                 </div>
+                {isModalOpen && <CreateGameModal onClose={closeModal} />}
 
                 {/* Game Management Cards */}
                 <div className="grid grid-cols-1 gap-4">

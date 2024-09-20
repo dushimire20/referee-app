@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {FaAngleDown, FaFileExport, FaPlus, FaSearch} from "react-icons/fa";
 import {AiOutlineCheck, AiOutlineClose, AiOutlineClockCircle} from "react-icons/ai";
+import InitiatePaymentModal from "@/components/InitiatePaymentModal.tsx";
 
 type Payment = {
     date: string;
@@ -123,7 +124,17 @@ const PaymentsOverview: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedPayments, setSelectedPayments] = useState<Payment[]>([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const paymentsPerPage = 10;
+    console.log(selectedPayments);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
 
     const filteredPayments = payments.filter(payment => {
         if (activeTab !== "All" && payment.status !== activeTab) return false;
@@ -179,7 +190,9 @@ const PaymentsOverview: React.FC = () => {
                         Export
                     </button>
                     <button
-                        className="bg-secondary-100 text-white px-4 py-2 rounded-xl hover:bg-opacity-70 flex items-center">
+                        className="bg-secondary-100 text-white px-4 py-2 rounded-xl hover:bg-opacity-70 flex items-center"
+                        onClick={openModal} // Open modal on button click
+                    >
                         <FaPlus className="mr-2"/>
                         Initiate Payment
                     </button>
@@ -303,6 +316,7 @@ const PaymentsOverview: React.FC = () => {
                     </button>
                 </div>
             </div>
+            {isModalOpen && <InitiatePaymentModal onClose={closeModal} />}
         </div>
     );
 };
