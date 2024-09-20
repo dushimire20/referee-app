@@ -18,7 +18,8 @@ const Profile = () => {
             <div className="flex flex-col md:flex-row w-full md:space-x-8">
                 <div className="w-full md:w-3/5">
                     {/* Profile Picture & Role */}
-                    <div className="flex flex-col md:flex-row space-x-0 md:space-x-8 p-2 rounded-lg">
+                    <div className="flex flex-col md:flex-row space-x-0 md:space-x-8 rounded-lg">
+                        {/* Profile Picture */}
                         <div className="flex flex-col mb-6 space-y-2">
                             <h3 className="text-lg uppercase text-gray-600">Profile picture</h3>
                             <FaUser className="w-44 h-44 rounded-xl bg-secondary-100 bg-opacity-5 p-2 mb-4" />
@@ -54,7 +55,7 @@ const Profile = () => {
                     </div>
 
                     {/* Employee Details & Shipping Address */}
-                    <div className="flex flex-col md:flex-row items-end space-x-0 md:space-x-8 p-2 space-y-6 md:space-y-0">
+                    <div className="flex flex-col md:flex-row items-end space-x-0 md:space-x-8  space-y-6 md:space-y-0">
                         {/* Employee Details */}
                         <div className="w-full">
                             <h3 className="text-lg uppercase text-gray-600 mb-4">Employee Details</h3>
@@ -154,7 +155,7 @@ const Profile = () => {
                 <button className="px-16 py-2 bg-gray-50 border rounded-lg text-secondary-100 hover:bg-gray-300">
                     Cancel
                 </button>
-                <button className="px-16 py-2 bg-secondary-100 text-white rounded-lg hover:bg-primary-dark">
+                <button className="px-16 py-2 bg-secondary-100 text-white rounded-lg hover:bg-opacity-70">
                     Save changes
                 </button>
             </div>

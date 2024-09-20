@@ -153,7 +153,7 @@ const Feedback = () => {
                         className="py-3 px-4 block w-full border-2 rounded-xl text-sm focus:outline-none focus:ring-secondary-100 disabled:opacity-50 disabled:pointer-events-none"
                         rows="5" placeholder="Type your reply..."></textarea>
                         <button
-                            className="bg-secondary-100 text-white py-3 px-16 rounded-xl text-sm hover:bg-secondary-200">
+                            className="bg-secondary-100 text-white py-3 px-16 rounded-xl text-sm hover:bg-opacity-70">
                             Submit
                         </button>
                     </form>

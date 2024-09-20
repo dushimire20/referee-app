@@ -1,5 +1,6 @@
 import React from "react";
 import {FaUser} from 'react-icons/fa';
+import {Link} from "react-router-dom";
 
 // Constants for distribution ranges
 const LOW = 30;
@@ -40,11 +41,12 @@ const StatusDistribution: React.FC<{ label: string, number: number }> = ({label,
 
 const AdminOverview = () => {
     return (
-        <div className="p-8 flex divide-x space-x-8">
-            <div className="w-3/4">
+        <div
+            className="p-8 flex flex-col md:flex-row md:divide-x space-y-8 md:space-y-0 md:space-x-8">
+            <div className="w-full md:w-3/4">
 
                 {/* Dashboard Overview */}
-                <div className="flex space-x-8 text-sm mb-8">
+                <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-sm mb-8">
                     <div className="p-6 bg-[#E3F5FF] rounded-2xl">
                         <span className="text-secondary-100">33</span>
                         <p>Ongoing games</p>
@@ -71,9 +73,10 @@ const AdminOverview = () => {
                 <div className="mb-8">
                     <h2 className="font-bold mb-4 flex justify-between items-center">
                         Upcoming Games
-                        <span className="text-red-500 cursor-pointer">Manage games</span>
+                        <Link to="/admin/games" className="text-red-500 font-medium cursor-pointer">Manage games</Link>
                     </h2>
-                    <div className="bg-secondary-100 text-sm bg-opacity-5 rounded-lg shadow-md p-4 mt-4">
+                    <div
+                        className="bg-secondary-100 text-sm bg-opacity-5 rounded-lg shadow-md p-4 mt-4 overflow-x-auto">
                         <table className="w-full">
                             <thead className="h-14 align-text-top">
                             <tr className="text-left text-gray-500">
@@ -99,9 +102,9 @@ const AdminOverview = () => {
             </div>
 
             {/* Available Referees */}
-            <div className="pl-8 w-1/4">
+            <div className="w-full md:w-1/4 pl-0 md:pl-8">
                 <h2 className="font-bold mb-4">Available Referees</h2>
-                <ul className="space-y-5 text-sm spay">
+                <ul className="space-y-5 text-sm spay mb-4">
                     {referees.map((referee, index) => (
                         <li key={index} className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
@@ -115,7 +118,7 @@ const AdminOverview = () => {
                         </li>
                     ))}
                 </ul>
-                <div className="mt-4 text-red-500 cursor-pointer">Manage referees</div>
+                <Link to="/admin/referees" className="text-red-500 cursor-pointer">Manage referees</Link>
             </div>
         </div>
     )

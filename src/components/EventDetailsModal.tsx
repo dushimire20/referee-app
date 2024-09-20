@@ -11,8 +11,10 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({event, onClose}) =
     if (!event) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center backdrop-filter backdrop-blur-sm">
-            <div className="bg-white p-16 relative rounded-lg text-sm shadow-lg w-1/2 space-y-4 max-h-screen overflow-y-auto">
+        <div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center backdrop-filter backdrop-blur-sm">
+            <div
+                className="bg-white p-4 sm:p-8 md:p-16 relative rounded-lg text-sm shadow-lg w-[95vw] sm:w-[60vw] md:w-1/2 space-y-4 max-h-screen max-w-[90vw] overflow-y-auto">
                 <button onClick={onClose}
                         className="h-8 w-8 absolute right-4 top-4 flex justify-center items-center bg-secondary-100 bg-opacity-50 text-white rounded-full">
                     <FaXmark/>
@@ -24,7 +26,9 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({event, onClose}) =
                 </div>
                 <div className="flex justify-between">
                     <span>Date</span>
-                    <span className="font-semibold">{event.start.toLocaleString()}</span>
+                    <span className="font-semibold">
+                        <span className="text-xs font-extralight">on</span> {event.start.toLocaleDateString('en-GB')} <span className="text-xs font-extralight ml-2">at</span>  {event.start.toLocaleTimeString('en-GB')}
+                    </span>
                 </div>
                 <div className="flex justify-between">
                     <span>Location</span>

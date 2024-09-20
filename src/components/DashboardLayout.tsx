@@ -23,7 +23,7 @@ const DashboardLayout: React.FC = () => {
     }
 
     return (
-        <div className="flex h-screen max-w-screen text-black">
+        <div className="flex h-screen overflow-y-hidden max-w-screen text-black">
             <Sidebar />
             <div className="flex flex-col flex-1">
                 <Navbar />

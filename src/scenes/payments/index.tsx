@@ -77,7 +77,7 @@ const Payments = () => {
     };
 
     return (
-        <div className="p-8 max-h-screen flex">
+        <div className="p-8 flex">
             <div className="flex flex-col md:flex-row w-full space-y-6 md:space-x-6 md:space-y-0 md:divide-x">
                 <div className="w-full md:w-3/4 space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -175,7 +175,7 @@ const Payments = () => {
                         <h3 className="text-lg font-semibold">Payment method</h3>
                         <div className="flex justify-between items-center">
                             <div className="mt-4 inline-flex">
-                                <input type="radio" id="radio1" name="paymentMethod" className="mr-2"/>
+                                <input type="radio" id="radio1" name="paymentMethod" className="mr-2" defaultChecked />
                                 <label htmlFor="radio1">MoMo</label>
                             </div>
                             <button className="mt-4 text-blue-600 border rounded-full border-blue-600 px-3 py-1 hover:underline">Change</button>

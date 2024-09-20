@@ -52,13 +52,13 @@ const ContactUs = () => {
 						rows={7}
 						name='message'
 						placeholder='Type your message here...'
-						className='w-full h-[187px] py-4 px-6  text-gray-200 rounded-lg outline-none border-2 font-medium xs:placeholder:text-[20px] xs:text-[20px]'
+						className='w-full h-[187px] py-4 px-6  text-gray-200 rounded-lg outline-none border-2 border-secondary-100 font-medium xs:placeholder:text-[20px] xs:text-[20px]'
 						required
 					/>
 
 					<button
 						type='submit'
-						className='w-[303px] bg-secondary-100  py-3 rounded-[12px] h-[65px] md:ml-[240px] mt-4 '
+						className='w-full sm:w-[303px] bg-secondary-100  py-3 rounded-[12px] h-[65px] md:ml-[240px] mt-4 '
 					>
 						Submit
 					</button>
