@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Calendar, momentLocalizer, Event, NavigateAction, View } from 'react-big-calendar';
+import {useState} from 'react';
+import {Calendar, momentLocalizer, Event, NavigateAction, View} from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CustomToolbar from '../../components/CustomToolbar';
@@ -59,8 +59,8 @@ const events: ScheduleEvent[] = [
     },
     {
         teams: 'Team A VS Team B',
-        start: new Date(2024, 8, 19, 7, 0),
-        end: new Date(2024, 8, 19, 9, 0),
+        start: new Date(2024, 8, 19, 15, 0),
+        end: new Date(2024, 8, 19, 18, 0),
         location: 'BK Arena, Kigali',
         crew_chief: 'Mugisha Jimmy',
         first_table_official: 'Rukundo Jean',
@@ -106,7 +106,7 @@ const Schedule = () => {
         setSelectedEvent(null);
     };
 
-    const CustomDayHeader = ({ label }: { label: string }) => {
+    const CustomDayHeader = ({label}: { label: string }) => {
         const [day, date] = label.split('\n');
         return (
             <div className="items-center text-center font-medium text-lg">
@@ -128,14 +128,14 @@ const Schedule = () => {
                 localizer={localizer}
                 onView={setView}
             />
-            <div className="my-calendar mx-auto mt-2">
+            <div className="my-calendar mx-auto mt-2 overflow-x-auto">
                 <Calendar
                     localizer={localizer}
                     events={events}
                     startAccessor="start"
                     endAccessor="end"
-                    className="rounded-xl bg-secondary-100 bg-opacity-5 border-none text-gray-700"
-                    style={{ height: 500 }}
+                    className="rounded-xl bg-secondary-100 bg-opacity-5 border-none text-gray-700 scroll-auto"
+                    style={{height: 500}}
                     defaultView="week"
                     views={['week']}
                     date={date}
@@ -159,7 +159,7 @@ const Schedule = () => {
                     }}
                 />
             </div>
-            <EventDetailsModal event={selectedEvent} onClose={handleCloseModal} />
+            <EventDetailsModal event={selectedEvent} onClose={handleCloseModal}/>
         </div>
     );
 }
