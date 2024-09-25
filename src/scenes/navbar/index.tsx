@@ -35,7 +35,7 @@ const Navbar = () => {
 					<div className={`${flexBetween} w-full gap-16`}>
 						{/* left side */}
 						<NavLink to="/">
-							<p className="font-poppins font-bold text-[32px] leading-[35.2px]">REFEREE.</p>
+							<p className="font-poppins font-bold text-[32px] leading-[35.2px]">ARAB.</p>
 						</NavLink>
 
 						{/* Right Side */}
@@ -46,9 +46,6 @@ const Navbar = () => {
 									<NavLink to="/" onClick={handleClick}>
 										Home
 									</NavLink>
-									<NavLink to="/dashboard" onClick={handleClick}>
-										Manage
-									</NavLink>
 									<NavLink to="/goals" onClick={handleClick}>
 										Our Goal
 									</NavLink>
@@ -57,9 +54,6 @@ const Navbar = () => {
 									</NavLink>
 									<NavLink to="/login" onClick={handleClick}>
 										Sign in
-									</NavLink>
-									<NavLink onClick={handleClick} to="/signUp">
-										Join Now
 									</NavLink>
 								</div>
 							</div>
@@ -86,13 +80,11 @@ const Navbar = () => {
 						{/* {menu items} */}
 						<div className="ml-[33%] flex  flex-col gap-8 text-lg font-poppins ">
 							<NavLink to="/">Home</NavLink>
-							<NavLink to="/dashboard">Manage</NavLink>
 							<NavLink to="/">Our Goal</NavLink>
 							<NavLink to="/">Key features</NavLink>
 							<NavLink to="/login" onClick={handleClick}>
 								Sign in
 							</NavLink>
-							<NavLink to="/signUp">Join Now</NavLink>
 						</div>
 					</div>
 				)}
