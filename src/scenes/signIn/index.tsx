@@ -35,11 +35,11 @@ const SignIn = () => {
 
 						</div>
 
-						<div className='mt-16'>
+						{/* <div className='mt-16'>
 							<p className='text-[49px] leading-[73.5px] font-semibold text-secondary-100'>Sign Up to </p>
 							<p className='text-[30.24px] leading-[45.37px] font-semibold text-secondary-100'>access more features!</p>
 
-						</div>
+						</div> */}
 
 					</div>
 
@@ -51,11 +51,6 @@ const SignIn = () => {
 								<label className='text-gray-100'>Welcome to
 									<span className='text-secondary-100 font-bold'> ARAB.</span><br />
 									<p className='text-[55px] leading-[82.2px]'>Sign in</p>
-								</label>
-								<label className='text-gray-200 h-[40px]'>
-									No Account ? <br />
-									<Link to="/signUp" className='text-secondary-100' >Sign up</Link>
-
 								</label>
 
 							</div>
@@ -88,9 +83,13 @@ const SignIn = () => {
 
 
 
-								<button type='submit' className=' mt-6 text-primary-100 bg-secondary-100 rounded-lg w-[451px] h-[54px]'>
+								{/* <button type='submit' className=' mt-6 text-primary-100 bg-secondary-100 rounded-lg w-[451px] h-[54px]'>
 									Sign In
-								</button>
+								</button> */}
+
+								<Link to="/dashboard" className='flex items-center justify-center mt-6 text-primary-100 bg-secondary-100 rounded-lg w-[451px] h-[54px]'>Sign In</Link>
+
+
 								<Link to="/forgotPassword" className='text-secondary-100'> Forgot password</Link>
 
 							</div>

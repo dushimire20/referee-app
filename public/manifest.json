@@ -1,0 +1,8 @@
+{
+  "name": "ARAB.",
+  "theme_color": "#881337",
+  "short_name": "ARAB.",
+  "start_url": ".",
+  "display": "standalone",
+  "description": "This is a web application that allows referees to manage their games and payments."
+}

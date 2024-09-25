@@ -29,10 +29,10 @@ function Sidebar() {
     ];
 
     const adminLinks = [
-        { icon: <MdOutlineDashboard size={24} />, title: "Admin Overview", to: "/admin" },
+        { icon: <MdOutlineDashboard size={24} />, title: "Overview", to: "/admin" },
         { icon: <GiWhistle size={24} />, title: "Referees", to: "/admin/referees" },
         { icon: <FaBasketball size={24} />, title: "Games", to: "/admin/games" },
-        { icon: <FaWallet size={24} />, title: "Manage Referees", to: "/admin/payments" },
+        { icon: <FaWallet size={24} />, title: "Payments", to: "/admin/payments" },
         { icon: <FaUser size={24} />, title: "Profile", to: "/admin/profile" },
         { icon: <FaComments size={24} />, title: "Feedback", to: "/admin/feedback" }
     ];
@@ -54,7 +54,7 @@ function Sidebar() {
             <div className={`flex mb-8 w-full sticky top-0 py-5 items-center gap-5 ${isExpanded ? 'pl-4' : 'justify-center'}`}>
                 <FaBars size={24} onClick={() => setIsExpanded(!isExpanded)} className="cursor-pointer" />
                 <Link to="/" id="logo" className={`bg-white text-secondary-100 font-poppins font-bold text-2xl ${!isExpanded && 'hidden'}`}>
-                    <span>REFEREE.</span>
+                    <span>ARAB.</span>
                 </Link>
             </div>
             <nav className="sticky top-0">
