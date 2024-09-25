@@ -20,7 +20,7 @@ const adminLinks = [
     {name: "Admin Overview", path: "/admin", roles: ["admin"], icon: <MdOutlineDashboard size={24}/>},
     {name: "Referees", path: "/admin/referees", roles: ["admin"], icon: <GiWhistle size={24}/>},
     {name: "Games", path: "/admin/games", roles: ["admin"], icon: <FaBasketball size={24}/>},
-    {name: "Manage Referees", path: "/admin/payments", roles: ["admin"], icon: <FaWallet size={24}/>},
+    {name: "Payment overview", path: "/admin/payments", roles: ["admin"], icon: <FaWallet size={24}/>},
     {name: "Profile", path: "/admin/profile", roles: ["admin"], icon: <FaUser size={24}/>},
     {name: "Feedback", path: "/admin/feedback", roles: ["admin"], icon: <FaComments size={24}/>}
 ];
@@ -28,7 +28,8 @@ const adminLinks = [
 const notificationsData = [
     {id: 1, title: "New Schedule", content: "You have a new schedule.", read: false},
     {id: 2, title: "Payment Received", content: "Your payment has been processed.", read: false},
-    {id: 3, title: "Profile Update", content: "Your profile has been updated.", read: true}
+    { id: 3, title: "Profile Update", content: "Your profile has been updated.", read: true },
+    {id: 4, title: "New Schedule", content: "You have a new schedule.", read: false},
 ];
 
 function Navbar() {
@@ -111,7 +112,7 @@ function Navbar() {
     const unreadNotifications = notifications.filter(n => !n.read).length;
 
     return (
-        <nav className="flex flex-wrap sticky top-0 w-full justify-between items-center bg-white border-b p-4 text-xs">
+        <nav className="flex flex-wrap sticky top-0 w-full justify-between items-center bg-white border-b p-4 text-xs z-10">
             <div className="flex-1 hidden md:flex">
                 <div className="relative">
                     <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"/>
@@ -190,7 +191,7 @@ function Navbar() {
             </div>
             {selectedNotification && (
                 <div>
-                    <div className="fixed inset-0 bg-black opacity-25 z-40"
+                    <div className="fixed inset-0 bg-black opacity-25"
                          onClick={() => setSelectedNotification(null)}></div>
                     <div className="absolute top-0 right-0 sm:w-1/3 h-[100vh] bg-white shadow-lg z-50 p-4 space-y-5">
                         <div className="relative h-full p-4 space-y-5">
