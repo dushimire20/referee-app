@@ -1,167 +1,366 @@
-import {useState} from 'react';
-import {Calendar, momentLocalizer, Event, NavigateAction, View} from 'react-big-calendar';
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-import CustomToolbar from '../../components/CustomToolbar';
-import EventDetailsModal from '../../components/EventDetailsModal';
+import React, { useState } from 'react';
+import EventDetailsModal from "@/components/EventDetailsModal.tsx";
 
-const localizer = momentLocalizer(moment);
-
-export interface ScheduleEvent extends Event {
-    teams: string;
-    start: Date;
-    end: Date;
-    location: string;
-    crew_chief: string;
-    first_table_official: string;
-    second_table_official: string;
-    third_table_official: string;
-    first_umpire_ref: string;
-    second_umpire_ref: string;
+interface Tournament {
+    name: string;
+    days: {
+        date: string;
+        games: Game[];
+    }[];
 }
 
-const events: ScheduleEvent[] = [
+export interface Game {
+    '#': number;
+    TIME: string;
+    TEAM_A: string;
+    TEAM_B: string;
+    CATEG: string;
+    COURT: string;
+    REFEREE: string;
+    UMPIRE_I: string;
+    UMPIRE_II: string;
+    SHOT_CLOCK: string;
+    TIMER: string;
+    ASS_SCORER: string;
+    SCORER: string;
+}
+
+const tournaments: Tournament[] = [
     {
-        teams: 'Team A VS Team B',
-        start: new Date(2024, 8, 16, 4, 0),
-        end: new Date(2024, 8, 16, 7, 0),
-        location: 'BK Arena, Kigali',
-        crew_chief: 'Mugisha Jimmy',
-        first_table_official: 'Rukundo Jean',
-        second_table_official: 'Habimana Eric',
-        third_table_official: 'Uwase Alice',
-        first_umpire_ref: 'Mukamana Grace',
-        second_umpire_ref: 'Kalisa John',
+        name: 'RBL PLAYOFFS FINAL 2024',
+        days: [
+            {
+                date: 'FRIDAY 20/09/2024',
+                games: [
+                    {
+                        '#': 2,
+                        TIME: '18:00',
+                        TEAM_A: 'REG',
+                        TEAM_B: 'KEPLER',
+                        CATEG: 'M',
+                        COURT: 'BK ARENA',
+                        REFEREE: '',
+                        UMPIRE_I: '',
+                        UMPIRE_II: '',
+                        SHOT_CLOCK: 'HABINEZA J',
+                        TIMER: 'NDAYIZEYE J',
+                        ASS_SCORER: 'UWAMAHORO O',
+                        SCORER: 'KWIZERA C',
+                    },
+                    {
+                        '#': 3,
+                        TIME: '20:30',
+                        TEAM_A: 'APR',
+                        TEAM_B: 'PATRIOTS',
+                        CATEG: 'M',
+                        COURT: 'BK ARENA',
+                        REFEREE: '',
+                        UMPIRE_I: '',
+                        UMPIRE_II: '',
+                        SHOT_CLOCK: 'SAFARI JB',
+                        TIMER: 'HAKIZIMANA S C',
+                        ASS_SCORER: 'MUKESHIMANA C',
+                        SCORER: 'SHIMWA J',
+                    },
+                ],
+            },
+            {
+                date: 'SUNDAY 22/09/2024',
+                games: [
+                    {
+                        '#': 4,
+                        TIME: '15:00',
+                        TEAM_A: 'KEPLER',
+                        TEAM_B: 'REG',
+                        CATEG: 'M',
+                        COURT: 'BK ARENA',
+                        REFEREE: '',
+                        UMPIRE_I: '',
+                        UMPIRE_II: '',
+                        SHOT_CLOCK: 'NSHIMYUMUKIZA V',
+                        TIMER: 'BASHEJA K',
+                        ASS_SCORER: 'NYIRAMBARUBUKEYE S',
+                        SCORER: 'IRAMBONA R',
+                    },
+                    {
+                        '#': 5,
+                        TIME: '18:00',
+                        TEAM_A: 'PATRIOTS',
+                        TEAM_B: 'APR',
+                        CATEG: 'M',
+                        COURT: 'BK ARENA',
+                        REFEREE: '',
+                        UMPIRE_I: '',
+                        UMPIRE_II: '',
+                        SHOT_CLOCK: 'NSHIMYUMUKIZA V',
+                        TIMER: 'IRASUBIZA E',
+                        ASS_SCORER: 'NYIRAMBARUBUKEYE S',
+                        SCORER: 'SHIMWA J',
+                    },
+                ],
+            },
+        ],
     },
     {
-        teams: 'Team A VS Team B',
-        start: new Date(2024, 8, 17, 5, 0),
-        end: new Date(2024, 8, 17, 8, 0),
-        location: 'BK Arena, Kigali',
-        crew_chief: 'Mugisha Jimmy',
-        first_table_official: 'Rukundo Jean',
-        second_table_official: 'Habimana Eric',
-        third_table_official: 'Munyaneza Sam',
-        first_umpire_ref: 'Mukamana Grace',
-        second_umpire_ref: 'Kalisa John',
+        name: 'RWANDA CUP WOMEN FINALS',
+        days: [
+            {
+                date: 'FRIDAY 20/09/2024',
+                games: [
+                    {
+                        '#': 8,
+                        TIME: '14:30',
+                        TEAM_A: 'IPRC HUYE',
+                        TEAM_B: 'KEPLER',
+                        CATEG: 'W',
+                        COURT: 'BK ARENA',
+                        REFEREE: 'MUHIRWA C',
+                        UMPIRE_I: 'TWIZEYIMANA D',
+                        UMPIRE_II: 'KWIBUKA A',
+                        SHOT_CLOCK: 'MUSHISHI P',
+                        TIMER: 'MUHAVENIMANA H',
+                        ASS_SCORER: 'TUYISHIME E',
+                        SCORER: 'UWAMAHORO O',
+                    },
+                    {
+                        '#': 9,
+                        TIME: '16:30',
+                        TEAM_A: 'REG',
+                        TEAM_B: 'APR',
+                        CATEG: 'W',
+                        COURT: 'BK ARENA',
+                        REFEREE: 'IKIREZI N S',
+                        UMPIRE_I: 'MUKANDANGA O',
+                        UMPIRE_II: 'DUSHIMIMANA A',
+                        SHOT_CLOCK: 'MUSHISHI P',
+                        TIMER: 'KAZAHURA M',
+                        ASS_SCORER: 'ISHIMWE M',
+                        SCORER: 'UWAMAHORO O',
+                    },
+                ],
+            },
+        ],
     },
     {
-        teams: 'Team A VS Team B',
-        start: new Date(2024, 8, 18, 4, 0),
-        end: new Date(2024, 8, 18, 9, 0),
-        location: 'BK Arena, Kigali',
-        crew_chief: 'Mugisha Jimmy',
-        first_table_official: 'Rukundo Jean',
-        second_table_official: 'Habimana Eric',
-        third_table_official: 'Munyaneza Sam',
-        first_umpire_ref: 'Mukamana Grace',
-        second_umpire_ref: 'Kalisa John',
+        name: 'RBL 2024',
+        days: [
+            {
+                date: 'SUNDAY 22/09/2024',
+                games: [
+                    {
+                        '#': 10,
+                        TIME: '18:30',
+                        TEAM_A: 'APR W',
+                        TEAM_B: 'IPRC HUYE W',
+                        CATEG: 'W',
+                        COURT: 'LDK',
+                        REFEREE: 'MUKANDANGA O',
+                        UMPIRE_I: 'NDERERIMANA L',
+                        UMPIRE_II: 'NSHIMYIMANA E',
+                        SHOT_CLOCK: 'NDAYIZEYE J',
+                        TIMER: 'KEZA G',
+                        ASS_SCORER: '',
+                        SCORER: 'NIZEYIMANA O',
+                    },
+                ],
+            },
+        ],
     },
     {
-        teams: 'Team A VS Team B',
-        start: new Date(2024, 8, 19, 15, 0),
-        end: new Date(2024, 8, 19, 18, 0),
-        location: 'BK Arena, Kigali',
-        crew_chief: 'Mugisha Jimmy',
-        first_table_official: 'Rukundo Jean',
-        second_table_official: 'Habimana Eric',
-        third_table_official: 'Munyaneza Sam',
-        first_umpire_ref: 'Mukamana Grace',
-        second_umpire_ref: 'Kalisa John',
+        name: 'ARPST',
+        days: [
+            {
+                date: 'FRIDAY 13/09/2024',
+                games: [
+                    {
+                        '#': 11,
+                        TIME: '15:30',
+                        TEAM_A: 'UR',
+                        TEAM_B: 'CHUB',
+                        CATEG: 'W',
+                        COURT: 'KIST',
+                        REFEREE: 'BIROORI Y',
+                        UMPIRE_I: 'IRADUKUNDA C',
+                        UMPIRE_II: '',
+                        SHOT_CLOCK: '',
+                        TIMER: '',
+                        ASS_SCORER: '',
+                        SCORER: 'SEMANZI M C',
+                    },
+                ],
+            },
+            {
+                date: 'SATURDAY 14/09/2024',
+                games: [
+                    {
+                        '#': 12,
+                        TIME: '11:00',
+                        TEAM_A: 'EQUITY',
+                        TEAM_B: 'I&M BANK',
+                        CATEG: 'M',
+                        COURT: 'STECOL',
+                        REFEREE: 'MFURAYURUKUNDA A',
+                        UMPIRE_I: 'ISHIMWE K',
+                        UMPIRE_II: '',
+                        SHOT_CLOCK: '',
+                        TIMER: '',
+                        ASS_SCORER: '',
+                        SCORER: 'UWINEZA S',
+                    },
+                ],
+            },
+        ],
     },
     {
-        teams: 'Team A VS Team B',
-        start: new Date(2024, 8, 20, 4, 0),
-        end: new Date(2024, 8, 20, 9, 0),
-        location: 'BK Arena, Kigali',
-        crew_chief: 'Mugisha Jimmy',
-        first_table_official: 'Rukundo Jean',
-        second_table_official: 'Habimana Eric',
-        third_table_official: 'Munyaneza Sam',
-        first_umpire_ref: 'Mukamana Grace',
-        second_umpire_ref: 'Kalisa John',
-    }
+        name: 'BNR TOURNAMENT',
+        days: [
+            {
+                date: 'FRIDAY 20/09/2024',
+                games: [
+                    {
+                        '#': 13,
+                        TIME: '15:00',
+                        TEAM_A: 'TEAM C',
+                        TEAM_B: 'TEAM D',
+                        CATEG: 'M',
+                        COURT: 'CSK',
+                        REFEREE: 'MANISHIMWE Y',
+                        UMPIRE_I: 'HAKIZIMANA A',
+                        UMPIRE_II: '',
+                        SHOT_CLOCK: '',
+                        TIMER: '',
+                        ASS_SCORER: '',
+                        SCORER: 'GWANEZAN N',
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        name: 'GASABO PRIVATE SCHOOL LEAGUE',
+        days: [
+            {
+                date: 'FRIDAY 20/09/2024',
+                games: [
+                    {
+                        '#': 14,
+                        TIME: '16:30',
+                        TEAM_A: 'GHA',
+                        TEAM_B: 'WSA',
+                        CATEG: 'Boys',
+                        COURT: 'GHA',
+                        REFEREE: 'USHINDI P',
+                        UMPIRE_I: 'MBAZUMUTIMA A',
+                        UMPIRE_II: '',
+                        SHOT_CLOCK: '',
+                        TIMER: '',
+                        ASS_SCORER: '',
+                        SCORER: 'UMWIZA K',
+                    },
+                    {
+                        '#': 15,
+                        TIME: '15:00',
+                        TEAM_A: 'KCS',
+                        TEAM_B: 'ISK',
+                        CATEG: 'Boys',
+                        COURT: 'KCS(Kibagaba)',
+                        REFEREE: 'BUGINGO C',
+                        UMPIRE_I: 'TWAGIRAYEZU A M',
+                        UMPIRE_II: '',
+                        SHOT_CLOCK: '',
+                        TIMER: '',
+                        ASS_SCORER: '',
+                        SCORER: 'UMUMABARUNGU D',
+                    },
+                ],
+            },
+        ],
+    },
 ];
 
-const Schedule = () => {
-    const [date, setDate] = useState(new Date());
-    const [view, setView] = useState<View>('week');
-    const [selectedEvent, setSelectedEvent] = useState<ScheduleEvent | null>(null);
+const Schedule: React.FC = () => {
+    const [selectedGame, setSelectedGame] = useState<Game | null>(null);
 
-    const handleNavigate = (action: NavigateAction) => {
-        const newDate = new Date(date);
-        if (action === 'PREV') {
-            newDate.setDate(date.getDate() - 7);
-        } else if (action === 'NEXT') {
-            newDate.setDate(date.getDate() + 7);
-        }
-        setDate(newDate);
+    const handleRowClick = (game: Game) => {
+        setSelectedGame(game);
     };
 
-    const handleEventClick = (event: ScheduleEvent) => {
-        setSelectedEvent(event);
+    const handleClosePopup = () => {
+        setSelectedGame(null);
     };
 
-    const handleCloseModal = () => {
-        setSelectedEvent(null);
-    };
-
-    const CustomDayHeader = ({label}: { label: string }) => {
-        const [day, date] = label.split('\n');
-        return (
-            <div className="items-center text-center font-medium text-lg">
-                <div className="text-gray-400">{day}</div>
-                <div>{date}</div>
-            </div>
-        );
-    };
+    const arbitratorColumns = [
+        'REFEREE',
+        'UMPIRE_I',
+        'UMPIRE_II',
+        'SHOT_CLOCK',
+        'TIMER',
+        'ASS_SCORER',
+        'SCORER',
+    ];
 
     return (
-        <div className="p-8 flex-1">
-            <h1 className="text-xl font-semibold text-start mt-5">My Schedule</h1>
-            <CustomToolbar
-                date={date}
-                onNavigate={handleNavigate}
-                view={view}
-                views={['week']}
-                label={localizer.format(date, 'MMMM yyyy')}
-                localizer={localizer}
-                onView={setView}
-            />
-            <div className="my-calendar mx-auto mt-2 overflow-x-auto">
-                <Calendar
-                    localizer={localizer}
-                    events={events}
-                    startAccessor="start"
-                    endAccessor="end"
-                    className="rounded-xl bg-secondary-100 bg-opacity-5 border-none text-gray-700 scroll-auto"
-                    style={{height: 500}}
-                    defaultView="week"
-                    views={['week']}
-                    date={date}
-                    onNavigate={setDate}
-                    onView={setView}
-                    onSelectEvent={handleEventClick}
-                    components={{
-                        event: (eventProps) => (
-                            <div className="p-2 rounded-lg text-white text-xs">
-                                <strong>{eventProps.event.teams}</strong>
-                                <div className="text-sm">{eventProps.event.location}</div>
-                            </div>
-                        ),
-                        header: CustomDayHeader,
-                        toolbar: () => <span className="h-4"></span>,
-                    }}
-                    formats={{
-                        timeGutterFormat: 'HH:mm',
-                        dayFormat: (date, culture, localizer) =>
-                            localizer!.format(date, 'ddd DD', culture).replace(' ', '\n'),
-                    }}
-                />
-            </div>
-            <EventDetailsModal event={selectedEvent} onClose={handleCloseModal}/>
+        <div className="p-8 w-full overflow-x-auto inline-block align-middle">
+            <h1 className="text-xl font-semibold text-start mb-5">Schedule</h1>
+            <table className="w-full bg-white shadow-md rounded-xl overflow-hidden text-xs">
+                <thead className="text-gray-700 bg-[#E5ECF6] overflow-x-auto">
+                <tr>
+                    <th className="py-3 px-4 text-left font-extralight">#</th>
+                    <th className="py-3 px-4 text-left font-extralight">TIME</th>
+                    <th className="py-3 px-4 text-left font-extralight">TEAM A</th>
+                    <th className="py-3 px-4 text-left font-extralight">TEAM B</th>
+                    <th className="py-3 px-4 text-left font-extralight">CATEG</th>
+                    <th className="py-3 px-4 text-left font-extralight">COURT</th>
+                    <th className="py-3 px-4 font-extralight">Arbitrators Assigned</th>
+                    <th className="py-3 px-4 font-extralight text-red-500">Missing Arbitrators</th>
+                </tr>
+                </thead>
+                <tbody className="text-blue-gray-900 overflow-x-auto">
+                {tournaments.map((tournament, tournamentIndex) => (
+                    <React.Fragment key={tournamentIndex}>
+                        <tr className="bg-secondary-100 bg-opacity-30 font-bold text-center" colSpan={8}>
+                            <td colSpan={8} className="py-2 px-4">
+                                {tournament.name}
+                            </td>
+                        </tr>
+                        {tournament.days.map((day, dayIndex) => (
+                            <React.Fragment key={dayIndex}>
+                                <tr className="bg-[#E5ECF6] bg-opacity-50 font-bold text-center" colSpan={8}>
+                                    <td colSpan={8} className="py-2 px-4">
+                                        {day.date}
+                                    </td>
+                                </tr>
+                                {day.games.map((game, gameIndex) => (
+                                    <tr
+                                        key={gameIndex}
+                                        className="border-b border-blue-gray-200 cursor-pointer"
+                                        onClick={() => handleRowClick(game)}
+                                    >
+                                        <td className="py-3 px-4">{game['#']}</td>
+                                        <td className="py-3 px-4">{game.TIME}</td>
+                                        <td className="py-3 px-4">{game.TEAM_A}</td>
+                                        <td className="py-3 px-4">{game.TEAM_B}</td>
+                                        <td className="py-3 px-4">{game.CATEG}</td>
+                                        <td className="py-3 px-4">{game.COURT}</td>
+                                        <td className="py-3 px-4 text-center">
+                                            {arbitratorColumns.filter((column) => !!game[column]).length}
+                                        </td>
+                                        <td className={`${arbitratorColumns.filter((column) => !game[column]).length && 'bg-red-500 bg-opacity-30 font-bold'} py-3 px-4 text-center`}>
+                                            {arbitratorColumns.filter((column) => !game[column]).length}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </React.Fragment>
+                        ))}
+                    </React.Fragment>
+                ))}
+                </tbody>
+            </table>
+            {selectedGame && (
+                <EventDetailsModal game={selectedGame} onClose={handleClosePopup}/>
+            )}
         </div>
     );
-}
+};
 
 export default Schedule;
