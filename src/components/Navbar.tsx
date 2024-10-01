@@ -193,8 +193,8 @@ function Navbar() {
                 <div>
                     <div className="fixed inset-0 bg-black opacity-25"
                          onClick={() => setSelectedNotification(null)}></div>
-                    <div className="absolute top-0 right-0 sm:w-1/3 h-[100vh] bg-white shadow-lg z-50 p-4 space-y-5">
-                        <div className="relative h-full p-4 space-y-5">
+                    <div className="absolute top-0 right-0 w-4/5 sm:w-3/5 md:w-1/3 h-[100vh] bg-white shadow-lg z-50 p-4 space-y-5">
+                        <div className="relative h-full px-4 py-9 space-y-5">
                             <button onClick={() => setSelectedNotification(null)}
                                     className="h-8 w-8 absolute right-4 top-4 flex justify-center items-center bg-secondary-100 bg-opacity-50 text-white rounded-full">
                                 <FaXmark/>
