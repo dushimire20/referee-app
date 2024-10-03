@@ -94,7 +94,7 @@ const GameManagement: React.FC = () => {
                     {tournaments.map((tournament, index) => (
                         <div
                             key={index}
-                            className="-z-50 relative h-52 text-white rounded-2xl shadow-md flex items-end overflow-hidden"
+                            className="relative h-52 text-white rounded-2xl shadow-md flex items-end overflow-hidden"
                         >
                             <img
                                 src={tournament.image}
