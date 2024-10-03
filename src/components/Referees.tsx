@@ -1,38 +1,9 @@
 import React from "react";
-import {GiConfirmed} from "react-icons/gi";
-import {RxCrossCircled} from "react-icons/rx";
+import { GiConfirmed } from "react-icons/gi";
+import { RxCrossCircled } from "react-icons/rx";
+import {Referee, referees} from "@/data/usersRelatedData";
+import {Link} from "react-router-dom";
 
-type Referee = {
-    id: string;
-    fullName: string;
-    type: string;
-    level: string;
-    lastAssignment: string;
-    tasks: number;
-    status: string;
-};
-
-const referees: Referee[] = [
-    {
-        id: "1234454",
-        fullName: "Eric HABIMANA",
-        type: "Table official",
-        level: "Beginner",
-        lastAssignment: "2/11/2021, 11:30 AM",
-        tasks: 3,
-        status: "Active",
-    },
-    {
-        id: "1234454",
-        fullName: "Eric HABIMANA",
-        type: "Table official",
-        level: "Advanced",
-        lastAssignment: "2/11/2021, 11:30 AM",
-        tasks: 4,
-        status: "Inactive",
-    },
-    // Add more referees here...
-];
 
 const Referees: React.FC = () => {
     return (
@@ -42,28 +13,24 @@ const Referees: React.FC = () => {
                 <table className="min-w-full border-t">
                     <thead>
                     <tr>
-                        <th className="px-4 py-2 text-left">Referee ID</th>
-                        <th className="px-4 py-2 text-left">Full Names</th>
-                        <th className="px-4 py-2 text-left">Type</th>
-                        <th className="px-4 py-2 text-left">Level</th>
-                        <th className="px-4 py-2 text-left">Last Assignment</th>
-                        <th className="px-4 py-2 text-left">Tasks</th>
-                        <th className="px-4 py-2 text-left">Status</th>
+                        <th className="px-4 py-2 text-left">Arbitrator ID</th>
+                        <th className="px-4 py-2 text-left">Full Name</th>
+                        <th className="px-4 py-2 text-left">Email</th>
+                        <th className="px-4 py-2 text-left">Arbitrator Role</th>
+                        <th className="px-4 py-2 text-left">Phone Number</th>
+                        <th className="px-4 py-2 text-left">Assignments</th>
                         <th className="px-4 py-2 text-left">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {referees.map((referee, index) => (
-                        <tr key={index}>
-                            <td className="px-4 py-4">{referee.id}</td>
-                            <td className="px-4 py-4">{referee.fullName}</td>
-                            <td className="px-4 py-4">{referee.type}</td>
-                            <td className="px-4 py-4">{referee.level}</td>
-                            <td className="px-4 py-4">{referee.lastAssignment}</td>
-                            <td className="px-4 py-4">{referee.tasks}</td>
-                            <td className={`px-4 py-4 ${referee.status === "Active" ? "text-green-500" : "text-red-500"}`}>
-                                {referee.status}
-                            </td>
+                    {referees.map((referee: Referee) => (
+                        <tr key={referee.arbitratorId}>
+                            <td className="px-4 py-4">{referee.arbitratorId}</td>
+                            <td className="px-4 py-4">{`${referee.firstName} ${referee.lastName}`}</td>
+                            <td className="px-4 py-4">{referee.email}</td>
+                            <td className="px-4 py-4">{referee.arbitratorRole}</td>
+                            <td className="px-4 py-4">{referee.phoneNumber}</td>
+                            <td className="px-4 py-4 text-center">{referee.assignments.length}</td>
                             <td className="px-4 py-4">
                                 <div className="flex space-x-4">
                                     <button className="text-blue-500 hover:text-blue-700">
@@ -80,9 +47,9 @@ const Referees: React.FC = () => {
                 </table>
             </div>
             <div className="mt-4 flex justify-end">
-                <button className="bg-secondary-100 text-white px-8 py-2 rounded-xl hover:bg-opacity-70">
+                <Link to="/admin/add_referee" className="bg-secondary-100 text-white px-8 py-2 rounded-xl hover:bg-opacity-70">
                     Add a Referee +
-                </button>
+                </Link>
             </div>
         </div>
     );
