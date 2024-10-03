@@ -1,6 +1,6 @@
 import React from 'react';
-import {Game} from '@/scenes/schedule';
 import {FaXmark} from "react-icons/fa6";
+import {Game} from "@/data/gameRelatedData.ts";
 
 interface EventDetailsModalProps {
     game: Game | null;

@@ -1,77 +1,27 @@
 import React, {useState} from "react";
 import {FaEdit, FaTrash, FaExternalLinkAlt} from "react-icons/fa";
 import CreateGameModal from "@/components/CreateGameModal.tsx";
+import {allGames, tournaments} from "@/data/gameRelatedData.ts";
+import CreateTournamentModal from "@/components/CreateTournamentModal.tsx";
 
-type Game = {
-    id: string;
-    teams: string;
-    dateTime: string;
-    location: string;
-    status: string;
-    score: string;
-};
 
-type Tournament = {
-    id: string;
-    name: string;
-    dateRange: string;
-    teams: number;
-    image: string;
-};
-
-const games: Game[] = [
-    {
-        id: "G001",
-        teams: "Team A VS Team B",
-        dateTime: "MM/DD/YYYY 14:00",
-        location: "KK Arena",
-        status: "Ongoing",
-        score: "Team A: 2 - 1 Team B",
-    },
-    {
-        id: "G002",
-        teams: "Team C VS Team D",
-        dateTime: "MM/DD/YYYY 16:00",
-        location: "BK Arena",
-        status: "Upcoming",
-        score: "Null",
-    },
-    {
-        id: "G003",
-        teams: "Team E VS Team F",
-        dateTime: "MM/DD/YYYY 14:00",
-        location: "KK Arena",
-        status: "Completed",
-        score: "Team E: 1 - 0 Team F",
-    }
-];
-
-const tournaments: Tournament[] = [
-    {
-        id: "T001",
-        name: "Rwanda Basketball League",
-        dateRange: "MM/DD/YYYY - MM/DD/YYYY 14:00",
-        teams: 16,
-        image: "https://images.unsplash.com/photo-1474224017046-182ece80b263?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-        id: "T002",
-        name: "Rwanda Basketball League - RBL",
-        dateRange: "MM/DD/YYYY - MM/DD/YYYY 14:00",
-        teams: 16,
-        image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-];
 
 const GameManagement: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isTournamentModalOpen, setIsTournamentModalOpen] = useState(false)
 
     const openModal = () => {
         setIsModalOpen(true);
     };
+    const openTournamentModal = () => {
+        setIsTournamentModalOpen(true);
+    };
 
     const closeModal = () => {
         setIsModalOpen(false);
+    };
+    const closeTournamentModal = () => {
+        setIsTournamentModalOpen(false);
     };
 
     return (
@@ -90,7 +40,7 @@ const GameManagement: React.FC = () => {
 
                 {/* Game Management Cards */}
                 <div className="grid grid-cols-1 gap-4">
-                    {games.map((game, index) => (
+                    {allGames.map((game, index) => (
                         <div key={index} className="bg-secondary-100 bg-opacity-5 p-4 rounded-lg shadow-md text-xs">
                             <p className="mb-6">
                                 <span className="text-secondary-100">Game ID:</span> {game.id}
@@ -101,21 +51,21 @@ const GameManagement: React.FC = () => {
                                     className="flex flex-col sm:flex-row justify-around items-center w-full sm:w-11/12 space-y-4 sm:space-y-0">
                                     <div className="w-full sm:w-1/2 space-y-4">
                                         <p>
-                                            <span className="text-secondary-100">Teams:</span> {game.teams}
+                                            <span className="text-secondary-100">Teams:</span> {game.TEAM_A} vs {game.TEAM_B}
                                         </p>
                                         <p>
-                                            <span className="text-secondary-100">Date and Time:</span> {game.dateTime}
+                                            <span className="text-secondary-100">Date and Time:</span> {game.DATE}
                                         </p>
                                         <p>
-                                            <span className="text-secondary-100">Location:</span> {game.location}
+                                            <span className="text-secondary-100">Location:</span> {game.COURT}
                                         </p>
                                     </div>
                                     <div className="w-full sm:w-1/2 space-y-4">
                                         <p>
-                                            <span className="text-secondary-100">Status:</span> {game.status}
+                                            <span className="text-secondary-100">Status:</span> {game.STATUS}
                                         </p>
                                         <p>
-                                            <span className="text-secondary-100">Score:</span> {game.score}
+                                            <span className="text-secondary-100">Score:</span> {game.SCORES}
                                         </p>
                                         <p className="flex items-center cursor-pointer text-secondary-100 space-x-2">
                                             <span>Referees in Charge</span>
@@ -168,10 +118,11 @@ const GameManagement: React.FC = () => {
                     ))}
                 </div>
                 <div className="mt-4 flex justify-end">
-                    <button className="bg-secondary-100 text-white px-6 py-3 text-sm rounded-xl hover:bg-opacity-70">
+                    <button onClick={openTournamentModal} className="bg-secondary-100 text-white px-6 py-3 text-sm rounded-xl hover:bg-opacity-70">
                         Create new tournament +
                     </button>
                 </div>
+                {isTournamentModalOpen && <CreateTournamentModal onClose={closeTournamentModal} />}
             </div>
         </div>
     );

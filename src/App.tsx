@@ -17,6 +17,7 @@ import AdminOverview from "@/components/AdminOverview.tsx";
 import Referees from "@/components/Referees.tsx";
 import GameManagement from "@/scenes/GameManagement.tsx";
 import PaymentsOverview from "@/scenes/PaymentsOverview.tsx";
+import CreateUserForm from "@/scenes/signUp";
 
 const App = () => {
 	return (
@@ -24,7 +25,6 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Home />} />
-					<Route path="signUp" element={<SignUp />} />
 					<Route path="login" element={<SignIn />} />
 					<Route path="forgotPassword" element={<ForgotPassword />} />
 					<Route path="goals" element={<OurGoals />} />
@@ -42,6 +42,7 @@ const App = () => {
 				<Route path="admin" element={<DashboardLayout />}>
 					<Route index element={<AdminOverview />} />
 					<Route path="referees" element={<Referees />} />
+					<Route path="add_referee" element={<CreateUserForm />} />
 					<Route path="games" element={<GameManagement />} />
 					<Route path="payments" element={<PaymentsOverview />} />
 					<Route path="profile" element={<Profile />} />
