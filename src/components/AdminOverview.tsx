@@ -1,25 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {FaUser} from 'react-icons/fa';
 import {Link} from "react-router-dom";
+import axios from "axios";
+
 
 // Constants for distribution ranges
 const LOW = 30;
 const MEDIUM = 50;
-
-const upcomingGames = [
-    {date: '1/1/23', time: '7PM', teams: 'Team A VS Team B', venue: 'BK Arena, Kigali'},
-    {date: '3/1/23', time: '6PM', teams: 'Team A VS Team B', venue: 'BK Arena, Kigali'},
-    {date: '5/1/23', time: '5PM', teams: 'Team A VS Team B', venue: 'BK Arena, Kigali'},
-    {date: '7/1/23', time: '4PM', teams: 'Team A VS Team B', venue: 'BK Arena, Kigali'},
-];
-
-const referees = [
-    {name: 'Eric HABIMANA', status: 'Available', avatar: 'https://via.placeholder.com/50'},
-    {name: 'John KALISA', status: 'Available', avatar: 'https://via.placeholder.com/50'},
-    {name: 'Emmy IZERE', status: 'Available', avatar: 'https://via.placeholder.com/50'},
-    {name: 'Olivier RUKUNDO', status: 'Available', avatar: 'https://via.placeholder.com/50'},
-    {name: 'Jimmy KAREMERA', status: 'Available', avatar: 'https://via.placeholder.com/50'},
-];
 
 const StatusDistribution: React.FC<{ label: string, number: number }> = ({label, number}) => {
     let color = 'bg-[#BB8095]';
@@ -39,7 +26,40 @@ const StatusDistribution: React.FC<{ label: string, number: number }> = ({label,
     );
 };
 
-const AdminOverview = () => {
+
+const AdminOverview: React.FC = () => {
+
+    const [games, setGames] = useState<Game[]>([]);
+    const [referees, setReferees] = useState<Referee[]>([]);
+    const [teams, setTeams] = useState<Team[]>([]);
+    const [availabilities, setAvailabilities] = useState<Availability[]>([]);
+
+    // Fetch upcomming games from the backend
+
+    useEffect( () => {
+
+        const fetchDashboardData = async () => {
+            try {
+              const response = await axios.get('http://localhost:3000/adminDashboard/dashboard');
+             console.log('Fetched games:', response.data.availabilities); // Log the games to check structure
+              setGames(response.data.games);
+              setReferees(response.data.referees);
+              setTeams(response.data.teams);
+              setAvailabilities(response.data.availabilities);
+            } catch (error) {
+              console.error('Error fetching dashboard data:', error);
+            }
+          };
+
+        fetchDashboardData();       
+    }, []); // Empty depandacy array ensures this runs only when the component mounts
+
+    // Filter games by status
+  const upcomingGames = games.filter(game => game.status === 'upcoming');
+  const ongoingGames = games.filter(game => game.status === 'ongoing');
+  const completedGames = games.filter(game => game.status === 'completed');
+  
+
     return (
         <div
             className="p-8 flex flex-col md:flex-row md:divide-x space-y-8 md:space-y-0 md:space-x-8">
@@ -48,25 +68,25 @@ const AdminOverview = () => {
                 {/* Dashboard Overview */}
                 <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-sm mb-8">
                     <div className="p-6 bg-[#E3F5FF] rounded-2xl">
-                        <span className="text-secondary-100">33</span>
+                        <span className="text-secondary-100">{ongoingGames.length}</span>
                         <p>Ongoing games</p>
                     </div>
                     <div className="p-6 bg-[#E5ECF6] rounded-2xl">
-                        <span className="text-secondary-100">21</span>
+                        <span className="text-secondary-100">{completedGames.length}</span>
                         <p>Completed games</p>
                     </div>
                     <div className="p-6 bg-[#E3F5FF] rounded-2xl">
-                        <span className="text-secondary-100">21</span>
-                        <p>Today's Assignments</p>
+                        <span className="text-secondary-100">{upcomingGames.length}</span>
+                        <p>Upcoming Games</p>
                     </div>
                 </div>
 
                 {/* Game Status Distribution */}
                 <div className="mb-8 space-y-4">
                     <h2 className="font-bold mb-4">Game Status Distribution</h2>
-                    <StatusDistribution label="Upcoming games" number={23}/>
-                    <StatusDistribution label="Ongoing games" number={44}/>
-                    <StatusDistribution label="Completed games" number={77}/>
+                    <StatusDistribution label="Upcoming games" number={upcomingGames.length}/>
+                    <StatusDistribution label="Ongoing games" number={ongoingGames.length}/>
+                    <StatusDistribution label="Completed games" number={completedGames.length}/>
                 </div>
 
                 {/* Upcoming Games */}
@@ -89,10 +109,15 @@ const AdminOverview = () => {
                             <tbody>
                             {upcomingGames.map((game, index) => (
                                 <tr key={index} className="">
-                                    <td>{game.date}</td>
+                                    <td>{new Date(game.date).toLocaleDateString()}</td>
                                     <td>{game.time}</td>
-                                    <td className="text-secondary-100">{game.teams}</td>
-                                    <td>{game.venue}</td>
+                                    <td className="text-secondary-100">
+                                    {game.teams.map(teamId => {
+                                        const team = teams.find(t => t._id === teamId);
+                                        return team ? team.name : 'Unknown Team'; // Fallback if team not found
+                                        }).join(' VS ')}
+                                    </td>
+                                    <td>{game.court}</td>
                                 </tr>
                             ))}
                             </tbody>
@@ -111,8 +136,13 @@ const AdminOverview = () => {
                                 <FaUser size={30}
                                         className="rounded-full w-10 h-10 py-2 bg-secondary-100 bg-opacity-5"/>
                                 <div className="flex flex-col">
-                                    <span>{referee.name}</span>
-                                    <span className="text-gray-400">{referee.status}</span>
+                                    <span>
+                                        {referee.firstName}
+                                        
+                                        </span>
+                                    <span className="text-gray-400">
+                                         {referee.lastName}
+                                    </span>
                                 </div>
                             </div>
                         </li>

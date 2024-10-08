@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FaEdit, FaTrash, FaExternalLinkAlt} from "react-icons/fa";
 import CreateGameModal from "@/components/CreateGameModal.tsx";
-import {allGames, tournaments} from "@/data/gameRelatedData.ts";
+import {allGames, Game, tournaments} from "@/data/gameRelatedData.ts";
 import CreateTournamentModal from "@/components/CreateTournamentModal.tsx";
+import axios from "axios";
+import { Referee } from "@/data/usersRelatedData";
 
 
 
@@ -24,6 +26,32 @@ const GameManagement: React.FC = () => {
         setIsTournamentModalOpen(false);
     };
 
+    // backend
+    const [games, setGames] = useState<Game[]>([]);
+    const [referees, setReferees] = useState<Referee[]>([]);
+    const [teams, setTeams] = useState<Team[]>([]);
+    const [tournaments, setTournaments] = useState<Tournament[]>([]);
+
+    // Fetch upcomming games from the backend
+
+    useEffect( () => {
+
+        const fetchDashboardData = async () => {
+            try {
+              const response = await axios.get('http://localhost:3000/adminDashboard/dashboard');
+             console.log('Fetched games:', response.data.games); // Log the games to check structure
+              setGames(response.data.games);
+              setReferees(response.data.referees);
+              setTeams(response.data.teams);
+              setTournaments(response.data.tournaments);
+            } catch (error) {
+              console.error('Error fetching dashboard data:', error);
+            }
+          };
+
+        fetchDashboardData();       
+    }, []); // Empty depandacy array ensures this runs only when the component mounts
+
     return (
         <div
             className="container mx-auto p-8 flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 md:divide-x">
@@ -40,7 +68,7 @@ const GameManagement: React.FC = () => {
 
                 {/* Game Management Cards */}
                 <div className="grid grid-cols-1 gap-4">
-                    {allGames.map((game, index) => (
+                    {games.map((game, index) => (
                         <div key={index} className="bg-secondary-100 bg-opacity-5 p-4 rounded-lg shadow-md text-xs">
                             <p className="mb-6">
                                 <span className="text-secondary-100">Game ID:</span> {game.id}
@@ -51,18 +79,22 @@ const GameManagement: React.FC = () => {
                                     className="flex flex-col sm:flex-row justify-around items-center w-full sm:w-11/12 space-y-4 sm:space-y-0">
                                     <div className="w-full sm:w-1/2 space-y-4">
                                         <p>
-                                            <span className="text-secondary-100">Teams:</span> {game.TEAM_A} vs {game.TEAM_B}
+                                            <span className="text-secondary-100">Teams: </span> 
+                                            {game.teams.map(teamId => {
+                                        const team = teams.find(t => t._id === teamId);
+                                        return team ? team.name : 'Unknown Team'; // Fallback if team not found
+                                        }).join(' VS ')}
                                         </p>
                                         <p>
-                                            <span className="text-secondary-100">Date and Time:</span> {game.DATE}
+                                            <span className="text-secondary-100">Date and Time:</span> {new Date(game.date).toLocaleDateString()} {game.time} 
                                         </p>
                                         <p>
-                                            <span className="text-secondary-100">Location:</span> {game.COURT}
+                                            <span className="text-secondary-100">Location:</span> {game.court}
                                         </p>
                                     </div>
                                     <div className="w-full sm:w-1/2 space-y-4">
                                         <p>
-                                            <span className="text-secondary-100">Status:</span> {game.STATUS}
+                                            <span className="text-secondary-100">Status:</span> {game.status}
                                         </p>
                                         <p>
                                             <span className="text-secondary-100">Score:</span> {game.SCORES}
@@ -105,8 +137,8 @@ const GameManagement: React.FC = () => {
                                 className="absolute -z-[2] w-full h-32 bg-gradient-to-t from-black to-transparent"></div>
                             <div className="flex flex-col text-xs space-y-4 px-8 pb-2">
                                 <p className="font-semibold text-sm">{tournament.name}</p>
-                                <p>{tournament.dateRange}</p>
-                                <p>{tournament.teams} teams</p>
+                                <p>{tournament.year}</p>
+                                <p>{tournament.teams.length} teams</p>
                             </div>
                             <div className="absolute top-2 right-2 ml-auto">
                                 <button
