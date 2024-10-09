@@ -40,7 +40,7 @@ const AdminOverview: React.FC = () => {
 
         const fetchDashboardData = async () => {
             try {
-              const response = await axios.get('http://localhost:3000/adminDashboard/dashboard');
+              const response = await axios.get('https://referee-backendv1.vercel.app/adminDashboard/dashboard');
              console.log('Fetched games:', response.data.availabilities); // Log the games to check structure
               setGames(response.data.games);
               setReferees(response.data.referees);

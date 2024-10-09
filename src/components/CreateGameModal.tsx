@@ -73,11 +73,11 @@ const CreateGameModal: React.FC<{ onClose: () => void }> = ({onClose}) => {
         scores: [],
     };
 
-    Axios.post("http://localhost:3000/adminDashboard/createGame", newGame)
+    Axios.post("https://referee-backendv1.vercel.app/adminDashboard/createGame", newGame)
     .then((response) => {
       if (response.data.status) {
         alert(`Game created successfully!`);
-        navigate("/admin/games"); // Navigate to game list page after creation
+        navigate("/dashboard"); // Navigate to game list page after creation
       } else {
         alert("Error creating game. Please try again.");
       }
