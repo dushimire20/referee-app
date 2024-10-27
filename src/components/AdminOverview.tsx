@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {FaUser} from 'react-icons/fa';
 import {Link} from "react-router-dom";
 import axios from "axios";
+import Spinner from "@/components/spinner"; // Adjust path as needed
 
 
 // Constants for distribution ranges
@@ -32,6 +33,7 @@ const AdminOverview: React.FC = () => {
     const [games, setGames] = useState<Game[]>([]);
     const [referees, setReferees] = useState<Referee[]>([]);
     const [teams, setTeams] = useState<Team[]>([]);
+    const [loading, setLoading] = useState(true);
 
 
     // Fetch upcomming games from the backend
@@ -39,6 +41,7 @@ const AdminOverview: React.FC = () => {
     useEffect( () => {
 
         const fetchDashboardData = async () => {
+            setLoading(true);
             try {
               const response = await axios.get('https://referee-backend.vercel.app/adminDashboard/dashboard');
              console.log('Fetched games:', response.data.availabilities); // Log the games to check structure
@@ -47,6 +50,9 @@ const AdminOverview: React.FC = () => {
               setTeams(response.data.teams);
             } catch (error) {
               console.error('Error fetching dashboard data:', error);
+            } 
+            finally {
+                setLoading(false);
             }
           };
 
@@ -57,6 +63,14 @@ const AdminOverview: React.FC = () => {
   const upcomingGames = games.filter(game => game.status === 'upcoming');
   const ongoingGames = games.filter(game => game.status === 'ongoing');
   const completedGames = games.filter(game => game.status === 'completed');
+
+  if (loading) {
+    return (
+        <div className="flex justify-center items-center h-screen">
+            <Spinner size={16} color="red-500" /> {/* Customize size and color as needed */}
+        </div>
+    );
+}
   
 
     return (
