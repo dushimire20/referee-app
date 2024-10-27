@@ -13,7 +13,7 @@ const Referees: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get("http://localhost:3000/adminDashboard/dashboard");
+            const response = await axios.get("https://referee-backend.vercel.app/adminDashboard/dashboard");
             setReferees(response.data.referees);
             setGames(response.data.games);
           } catch (error) {

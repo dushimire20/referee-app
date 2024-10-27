@@ -23,7 +23,7 @@ const CalendarPage: React.FC = () => {
   useEffect(() => {
     if (user && user.userId) {  // Check if user and user.userId are defined
       axios
-        .get('http://localhost:3000/referee/getAvailability', {
+        .get('https://referee-backend.vercel.app/referee/getAvailability', {
           params: { refereeId: user.userId },
         })
         .then((response) => {
@@ -52,7 +52,7 @@ const CalendarPage: React.FC = () => {
   const saveAvailability = () => {
     if (user && user.userId) {
       axios
-        .post('http://localhost:3000/referee/createAvailability', {
+        .post('https://referee-backend.vercel.app/referee/createAvailability', {
           refereeId: user.userId,
           dates: availableDates,
         })

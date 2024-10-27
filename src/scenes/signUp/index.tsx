@@ -43,7 +43,7 @@ const CreateUserForm = () => {
       password
     };
 
-    Axios.post('http://localhost:3000/adminDashboard/createReferee', newReferee)
+    Axios.post('https://referee-backend.vercel.app/adminDashboard/createReferee', newReferee)
       .then(response => {
         if (response.data.status) {
           alert(`${assignment} created successfully!`);

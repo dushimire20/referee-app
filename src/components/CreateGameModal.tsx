@@ -25,7 +25,7 @@ const CreateGameModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await Axios.get("http://localhost:3000/adminDashboard/dashboard");
+        const response = await Axios.get("https://referee-backend.vercel.app/adminDashboard/dashboard");
         setReferees(response.data.referees);
         setTeams(response.data.teams);
         setTournaments(response.data.tournaments);
@@ -56,7 +56,7 @@ const CreateGameModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       status: formData.status
     };
 
-    Axios.post("http://localhost:3000/adminDashboard/createGame", newGame)
+    Axios.post("https://referee-backend.vercel.app/adminDashboard/createGame", newGame)
       .then((response) => {
         if (response.data.status) {
           alert(`Game created successfully!`);

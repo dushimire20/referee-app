@@ -10,7 +10,7 @@ const Schedule: React.FC = () => {
   useEffect(() => {
     const fetchScheduleData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/referee/refereeDashboard');
+        const response = await axios.get('https://referee-backend.vercel.app/referee/refereeDashboard');
         console.log('Fetched data:', response.data);
         setTournaments(response.data.tournaments || []); // Ensure it defaults to an empty array if not found
         setGames(response.data.games || []); // Ensure it defaults to an empty array if not found

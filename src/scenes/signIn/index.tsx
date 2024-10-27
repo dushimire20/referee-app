@@ -19,7 +19,7 @@ const SignIn: React.FC<SignInProps> = ({ setUser }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await Axios.post('http://localhost:3000/login/referee', {
+      const response = await Axios.post('https://referee-backend.vercel.app/login/referee', {
         email,
         password,
       });

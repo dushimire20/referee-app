@@ -19,7 +19,7 @@ const CreateTournamentModal: React.FC<{ onClose: () => void }> = ({ onClose }) =
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/adminDashboard/createTournament', formData)
+    axios.post('https://referee-backend.vercel.app/adminDashboard/createTournament', formData)
       .then(response => {
         if (response.data.status) {
           alert("Tournament Created Successfully");

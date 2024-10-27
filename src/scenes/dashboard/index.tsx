@@ -26,7 +26,7 @@ const DashboardHome = () => {
 
         const fetchDashboardData = async () => {
             try {
-              const response = await axios.get('http://localhost:3000/referee/refereeDashboard');
+              const response = await axios.get('https://referee-backend.vercel.app/referee/refereeDashboard');
              console.log('Fetched games:', response.data.games); // Log the games to check structure
               setGames(response.data.games);
               setTeams(response.data.teams);
