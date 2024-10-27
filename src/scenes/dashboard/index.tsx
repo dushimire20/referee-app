@@ -1,15 +1,44 @@
 import {useEffect, useState} from 'react';
 import images from '@/constants/images';
 import {Link} from "react-router-dom";
+import axios from 'axios';
+
 
 const DashboardHome = () => {
     const [date] = useState(new Date());
     const [currentMonth, setCurrentMonth] = useState('');
+    const [user, setUser] = useState<any>(null); // Use a specific type if you have it
+
+    const [games, setGames] = useState<Game[]>([]);
+    const [teams, setTeams] = useState<Team[]>([]);
 
     useEffect(() => {
         const month = date.toLocaleString('default', {month: 'long'});
         setCurrentMonth(month);
     }, [date]);
+
+    useEffect(() => {
+        // Get the user from localStorage when the component mounts
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+          setUser(JSON.parse(storedUser)); // Parse the JSON stored in localStorage
+        }
+
+        const fetchDashboardData = async () => {
+            try {
+              const response = await axios.get('http://localhost:3000/referee/refereeDashboard');
+             console.log('Fetched games:', response.data.games); // Log the games to check structure
+              setGames(response.data.games);
+              setTeams(response.data.teams);
+            } catch (error) {
+              console.error('Error fetching dashboard data:', error);
+            }
+          };
+
+        fetchDashboardData();       
+      }, []);
+
+      const upcomingGames = games.filter(game => game.status === 'upcoming');
 
     const events = [
         {date: new Date(2024, 8, 1), title: 'Event 1'},
@@ -32,38 +61,13 @@ const DashboardHome = () => {
         }
     ];
 
-    const upcomingGames = [
-        {
-            date: '1/1/23',
-            time: '7PM',
-            teams: 'Team A VS Team B',
-            venue: 'BK Arena, Kigali'
-        },
-        {
-            date: '3/1/23',
-            time: '6PM',
-            teams: 'Team A VS Team B',
-            venue: 'BK Arena, Kigali'
-        },
-        {
-            date: '5/1/23',
-            time: '5PM',
-            teams: 'Team A VS Team B',
-            venue: 'BK Arena, Kigali'
-        },
-        {
-            date: '7/1/23',
-            time: '4PM',
-            teams: 'Team A VS Team B',
-            venue: 'BK Arena, Kigali'
-        }
-    ];
+
 
     const currentMonthEvents = events.filter(event => event.date.getMonth() === date.getMonth()).slice(0, 4);
 
     return (
         <div className="p-8 flex-1">
-            <h1 className="text-3xl font-bold">Hi, Eric ISHIMWE</h1>
+            <h1 className="text-3xl font-bold">Hi, {user ? user.lastName : "Guest"} </h1>
             <p className="text-gray-500">Welcome back to your Referee dashboard</p>
 
             <div className="flex flex-col lg:flex-row mt-8 space-y-6 lg:space-x-10 lg:space-y-0">
@@ -87,10 +91,12 @@ const DashboardHome = () => {
                                 <tbody>
                                 {upcomingGames.map((game, i) => (
                                     <tr key={i} className="">
-                                        <td>{game.date}</td>
+                                        <td>{new Date(game.date).toLocaleDateString()}</td>
                                         <td>{game.time}</td>
-                                        <td className="text-secondary-100">{game.teams}</td>
-                                        <td>{game.venue}</td>
+                                        <td className="text-secondary-100">
+                                        {game.teamA} Vs {game.teamB}
+                                        </td>
+                                        <td>{game.court}</td>
                                     </tr>
                                 ))}
                                 </tbody>

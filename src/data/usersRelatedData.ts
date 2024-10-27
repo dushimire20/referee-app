@@ -1,13 +1,12 @@
 import {Assignment} from "@/data/gameRelatedData.ts";
 
-export const arbitratorRoles = [
-    'REFEREE',
-    'UMPIRE_I',
-    'UMPIRE_II',
-    'SHOT_CLOCK',
-    'TIMER',
-    'ASS_SCORER',
-    'SCORER',
+export const levels = [
+    'Select referee Level',
+    'Level 1',
+    'Level 2',
+    'Level 3',
+    'Level 4',
+    'Level 5',
 ];
 
 export type SystemRole = 'Referee' | 'Admin';

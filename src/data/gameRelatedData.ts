@@ -1,34 +1,26 @@
 export interface Tournament {
-    id?: string;
     name?: string;
-    image?: string;
-    teams?: number;
-    dateRange?: string;
-    days: {
-        date: string;
-        games: Game[];
-    }[];
+    gameCost?: string;
+    tournamentPicture?: string;
+    duration?: string;
 }
 
 // export type GameStatus = 'Upcoming' | 'OnGoing' | 'Ended';
 
 export interface Game {
-    id: number;
-    TIME: string;
-    DATE: string;
-    TEAM_A: string;
-    TEAM_B: string;
-    CATEG: string;
-    COURT: string;
-    STATUS: string;
-    REFEREE: string;
-    UMPIRE_I: string;
-    UMPIRE_II: string;
-    SHOT_CLOCK: string;
-    TIMER: string;
-    ASS_SCORER: string;
-    SCORER: string;
-    SCORES: string;
+    time: string;
+    date: string;
+    teamA: string;
+    teamB: string;
+    category: string;
+    court: string;
+    referee: string;
+    umpire1: string;
+    umpire2: string;
+    shotClock: string;
+    timer: string;
+    assistantScorer: string;
+    scorer: string;
 }
 
 export interface Assignment {

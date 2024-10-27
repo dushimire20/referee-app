@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {FaXmark} from "react-icons/fa6";
 import {Game} from "@/data/gameRelatedData.ts";
 
@@ -24,49 +24,49 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({game, onClose}) =>
                 <h2 className="text-xl font-semibold mb-4">Game details</h2>
                 <div className="flex justify-between">
                     <span>Teams</span>
-                    <span className="font-semibold">{game.TEAM_A} <span className="text-xs font-extralight px-4">vs</span>  {game.TEAM_B}</span>
+                    <span className="font-semibold">{game.teamA} <span className="text-xs font-extralight px-4">vs</span>  {game.teamB}</span>
                 </div>
                 <div className="flex justify-between">
                     <span>Time</span>
                     <span className="font-semibold">
-                        <span className="text-xs font-extralight mr-3">at</span> {game.TIME}
+                        <span className="text-xs font-extralight mr-3">at</span> {game.time}
                     </span>
                 </div>
                 <div className="flex justify-between">
                     <span>Category</span>
-                    <span className="font-semibold">{game.CATEG}</span>
+                    <span className="font-semibold">{game.category}</span>
                 </div>
                 <div className="flex justify-between">
                     <span>Location</span>
-                    <span className="font-semibold">{game.COURT}</span>
+                    <span className="font-semibold">{game.court}</span>
                 </div>
                 <div className="flex justify-between">
                     <span>Referee</span>
-                    <span className="font-semibold">{game.REFEREE}</span>
+                    <span className="font-semibold">{game.referee}</span>
                 </div>
                 <div className="flex justify-between">
                     <span>Umpire I</span>
-                    <span className="font-semibold">{game.UMPIRE_I}</span>
+                    <span className="font-semibold">{game.umpire1}</span>
                 </div>
                 <div className="flex justify-between">
                     <span>Umpire II</span>
-                    <span className="font-semibold">{game.UMPIRE_II}</span>
+                    <span className="font-semibold">{game.umpire2}</span>
                 </div>
                 <div className="flex justify-between">
                     <span>Shot Clock</span>
-                    <span className="font-semibold">{game.SHOT_CLOCK}</span>
+                    <span className="font-semibold">{game.shotClock}</span>
                 </div>
                 <div className="flex justify-between">
                     <span>Timer</span>
-                    <span className="font-semibold">{game.TIMER}</span>
+                    <span className="font-semibold">{game.timer}</span>
                 </div>
                 <div className="flex justify-between">
                     <span>Ass. Scorer</span>
-                    <span className="font-semibold">{game.ASS_SCORER}</span>
+                    <span className="font-semibold">{game.assistantScorer}</span>
                 </div>
                 <div className="flex justify-between">
                     <span>Scorer</span>
-                    <span className="font-semibold">{game.SCORER}</span>
+                    <span className="font-semibold">{game.scorer}</span>
                 </div>
             </div>
         </div>

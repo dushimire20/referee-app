@@ -33,6 +33,7 @@ const notificationsData = [
 ];
 
 function Navbar() {
+    const [user, setUser] = useState<any>(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState<{
         name: string;
@@ -55,6 +56,8 @@ function Navbar() {
             setUserRole(role);
         }
 
+        
+
         const handleClickOutside = (event) => {
             if (bellRef.current && !bellRef.current.contains(event.target)) {
                 setShowDropdown(false);
@@ -70,6 +73,13 @@ function Navbar() {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+          setUser(JSON.parse(storedUser));
+        }
+      }, []);
 
     const handleLogout = () => {
         localStorage.clear();
@@ -167,8 +177,8 @@ function Navbar() {
                     <div className="flex items-center gap-2 cursor-pointer" onClick={handleProfileClick}>
                         <FaUser size={40} className="rounded-full w-9 h-9 py-2 bg-secondary-100 bg-opacity-5"/>
                         <div className="hidden sm:block">
-                            <p className="font-semibold">Eric ISHIMWE</p>
-                            <p className="text-gray-400">Referee</p>
+                            <p className="font-semibold">{user ? user.firstName: ""}</p>
+                            <p className="text-gray-400">{user ? user.roles: "ref"}</p>
                         </div>
                     </div>
                     {showProfileDropdown && (

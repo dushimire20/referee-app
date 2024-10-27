@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GiConfirmed } from "react-icons/gi";
 import { RxCrossCircled } from "react-icons/rx";
-import {Referee, referees} from "@/data/usersRelatedData";
+//import {Referee, referees} from "@/data/usersRelatedData";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 
 const Referees: React.FC = () => {
+    const [referees, setReferees] = useState<Referee[]>([]);
+    const [games, setGames] = useState<Game[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get("http://localhost:3000/adminDashboard/dashboard");
+            setReferees(response.data.referees);
+            setGames(response.data.games);
+          } catch (error) {
+            console.error("Error fetching dashboard data:", error);
+          }
+        };
+    
+        fetchData();
+      }, []); // Empty dependency array ensures this runs only when the component mounts
     return (
         <div className="container mx-auto p-8">
             <h1 className="text-2xl font-semibold mb-4 uppercase">Referees List</h1>
@@ -13,7 +30,7 @@ const Referees: React.FC = () => {
                 <table className="min-w-full border-t">
                     <thead>
                     <tr>
-                        <th className="px-4 py-2 text-left">Arbitrator ID</th>
+                        <th className="px-4 py-2 text-left">Arbitrator Levels</th>
                         <th className="px-4 py-2 text-left">Full Name</th>
                         <th className="px-4 py-2 text-left">Email</th>
                         <th className="px-4 py-2 text-left">Arbitrator Role</th>
@@ -23,14 +40,14 @@ const Referees: React.FC = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {referees.map((referee: Referee) => (
-                        <tr key={referee.arbitratorId}>
-                            <td className="px-4 py-4">{referee.arbitratorId}</td>
+                    {referees.map((referee: Referee, index: number) => (
+                        <tr key={index}>
+                            <td className="px-4 py-4">{referee.level}</td>
                             <td className="px-4 py-4">{`${referee.firstName} ${referee.lastName}`}</td>
                             <td className="px-4 py-4">{referee.email}</td>
-                            <td className="px-4 py-4">{referee.arbitratorRole}</td>
+                            <td className="px-4 py-4">{referee.roles}</td>
                             <td className="px-4 py-4">{referee.phoneNumber}</td>
-                            <td className="px-4 py-4 text-center">{referee.assignments.length}</td>
+                            <td className="px-4 py-4 text-center">{referee.assignment}</td>
                             <td className="px-4 py-4">
                                 <div className="flex space-x-4">
                                     <button className="text-blue-500 hover:text-blue-700">

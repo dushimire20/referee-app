@@ -32,7 +32,7 @@ const AdminOverview: React.FC = () => {
     const [games, setGames] = useState<Game[]>([]);
     const [referees, setReferees] = useState<Referee[]>([]);
     const [teams, setTeams] = useState<Team[]>([]);
-    const [availabilities, setAvailabilities] = useState<Availability[]>([]);
+
 
     // Fetch upcomming games from the backend
 
@@ -40,12 +40,11 @@ const AdminOverview: React.FC = () => {
 
         const fetchDashboardData = async () => {
             try {
-              const response = await axios.get('https://referee-backendv1.vercel.app/adminDashboard/dashboard');
+              const response = await axios.get('http://localhost:3000/adminDashboard/dashboard');
              console.log('Fetched games:', response.data.availabilities); // Log the games to check structure
               setGames(response.data.games);
               setReferees(response.data.referees);
               setTeams(response.data.teams);
-              setAvailabilities(response.data.availabilities);
             } catch (error) {
               console.error('Error fetching dashboard data:', error);
             }
@@ -112,10 +111,7 @@ const AdminOverview: React.FC = () => {
                                     <td>{new Date(game.date).toLocaleDateString()}</td>
                                     <td>{game.time}</td>
                                     <td className="text-secondary-100">
-                                    {game.teams.map(teamId => {
-                                        const team = teams.find(t => t._id === teamId);
-                                        return team ? team.name : 'Unknown Team'; // Fallback if team not found
-                                        }).join(' VS ')}
+                                    {game.teamA} Vs {game.teamB}
                                     </td>
                                     <td>{game.court}</td>
                                 </tr>

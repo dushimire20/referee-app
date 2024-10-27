@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {FaEdit, FaTrash, FaExternalLinkAlt} from "react-icons/fa";
 import CreateGameModal from "@/components/CreateGameModal.tsx";
-import {allGames, Game, tournaments} from "@/data/gameRelatedData.ts";
 import CreateTournamentModal from "@/components/CreateTournamentModal.tsx";
 import axios from "axios";
 import { Referee } from "@/data/usersRelatedData";
@@ -28,7 +27,6 @@ const GameManagement: React.FC = () => {
 
     // backend
     const [games, setGames] = useState<Game[]>([]);
-    const [referees, setReferees] = useState<Referee[]>([]);
     const [teams, setTeams] = useState<Team[]>([]);
     const [tournaments, setTournaments] = useState<Tournament[]>([]);
 
@@ -41,7 +39,6 @@ const GameManagement: React.FC = () => {
               const response = await axios.get('http://localhost:3000/adminDashboard/dashboard');
              console.log('Fetched games:', response.data.games); // Log the games to check structure
               setGames(response.data.games);
-              setReferees(response.data.referees);
               setTeams(response.data.teams);
               setTournaments(response.data.tournaments);
             } catch (error) {
@@ -71,7 +68,7 @@ const GameManagement: React.FC = () => {
                     {games.map((game, index) => (
                         <div key={index} className="bg-secondary-100 bg-opacity-5 p-4 rounded-lg shadow-md text-xs">
                             <p className="mb-6">
-                                <span className="text-secondary-100">Game ID:</span> {game.id}
+                                <span className="text-secondary-100">Game ID:</span> {game._id}
                             </p>
                             <div
                                 className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
@@ -80,10 +77,7 @@ const GameManagement: React.FC = () => {
                                     <div className="w-full sm:w-1/2 space-y-4">
                                         <p>
                                             <span className="text-secondary-100">Teams: </span> 
-                                            {game.teams.map(teamId => {
-                                        const team = teams.find(t => t._id === teamId);
-                                        return team ? team.name : 'Unknown Team'; // Fallback if team not found
-                                        }).join(' VS ')}
+                                            {game.teamA} Vs {game.teamB}
                                         </p>
                                         <p>
                                             <span className="text-secondary-100">Date and Time:</span> {new Date(game.date).toLocaleDateString()} {game.time} 
@@ -97,7 +91,7 @@ const GameManagement: React.FC = () => {
                                             <span className="text-secondary-100">Status:</span> {game.status}
                                         </p>
                                         <p>
-                                            <span className="text-secondary-100">Score:</span> {game.SCORES}
+                                            <span className="text-secondary-100">Score:</span> 
                                         </p>
                                         <p className="flex items-center cursor-pointer text-secondary-100 space-x-2">
                                             <span>Referees in Charge</span>
@@ -129,7 +123,7 @@ const GameManagement: React.FC = () => {
                             className="relative h-52 text-white rounded-2xl shadow-md flex items-end overflow-hidden"
                         >
                             <img
-                                src={tournament.image}
+                                src={tournament.tournamentPicture}
                                 alt={tournament.name}
                                 className="absolute w-full h-full object-cover -z-10"
                             />
@@ -137,8 +131,8 @@ const GameManagement: React.FC = () => {
                                 className="absolute -z-[2] w-full h-32 bg-gradient-to-t from-black to-transparent"></div>
                             <div className="flex flex-col text-xs space-y-4 px-8 pb-2">
                                 <p className="font-semibold text-sm">{tournament.name}</p>
-                                <p>{tournament.year}</p>
-                                <p>{tournament.teams.length} teams</p>
+                                <p>{tournament.duration}</p>
+                                <p>{tournament.gameCost} RWF</p>
                             </div>
                             <div className="absolute top-2 right-2 ml-auto">
                                 <button
