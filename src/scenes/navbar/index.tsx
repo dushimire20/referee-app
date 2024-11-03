@@ -4,8 +4,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
 const Navbar = () => {
-	const [click, setClick] = useState(false);
-	const handleClick = () => setClick(!click);
 	const flexBetween = "flex items-center justify-between";
 	const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
 	const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
@@ -26,6 +24,10 @@ const Navbar = () => {
 		};
 	}, []);
 
+	const handleNavLinkClick = () => {
+		setIsMenuToggled(false);
+	};
+
 	return (
 		<nav>
 			<div
@@ -43,16 +45,16 @@ const Navbar = () => {
 							<div className={`${flexBetween} w-full`}>
 								<div className={`${flexBetween} gap-8 text-sm`}></div>
 								<div className={`${flexBetween} gap-8`}>
-									<NavLink to="/" onClick={handleClick}>
+									<NavLink to="/" onClick={handleNavLinkClick}>
 										Home
 									</NavLink>
-									<NavLink to="/goals" onClick={handleClick}>
+									<NavLink to="/goals" onClick={handleNavLinkClick}>
 										Our Goal
 									</NavLink>
-									<NavLink to="/features" onClick={handleClick}>
+									<NavLink to="/features" onClick={handleNavLinkClick}>
 										Key features
 									</NavLink>
-									<NavLink to="/login" onClick={handleClick}>
+									<NavLink to="/login" onClick={handleNavLinkClick}>
 										Sign in
 									</NavLink>
 								</div>
@@ -79,12 +81,10 @@ const Navbar = () => {
 						</div>
 						{/* {menu items} */}
 						<div className="ml-[33%] flex  flex-col gap-8 text-lg font-poppins ">
-							<NavLink to="/">Home</NavLink>
-							<NavLink to="/">Our Goal</NavLink>
-							<NavLink to="/">Key features</NavLink>
-							<NavLink to="/login" onClick={handleClick}>
-								Sign in
-							</NavLink>
+							<NavLink to="/" onClick={handleNavLinkClick}>Home</NavLink>
+							<NavLink to="/goals" onClick={handleNavLinkClick}>Our Goal</NavLink>
+							<NavLink to="/features" onClick={handleNavLinkClick}>Key features</NavLink>
+							<NavLink to="/login" onClick={handleNavLinkClick}>Sign in</NavLink>
 						</div>
 					</div>
 				)}
