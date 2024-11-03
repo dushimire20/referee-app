@@ -5,7 +5,7 @@ import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 interface SignInProps {
-  setUser: (user: any) => void;// Adjust the type according to your user object
+  setUser: (user: any) => void; // Adjust the type according to your user object
 }
 
 const SignIn: React.FC<SignInProps> = ({ setUser }) => {
@@ -23,24 +23,19 @@ const SignIn: React.FC<SignInProps> = ({ setUser }) => {
         email,
         password,
       });
-      // Check if the status is 200 and token exists
       if (response.status === 200 && response.data.token) {
         console.log('User data received from server:', response.data);
-		const { userId } = response.data;  // Ensure userId is part of the response
-        // Save token and user details in local storage or context, if needed
+        const { userId } = response.data;
         localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data.referee)); // Save user info
-		localStorage.setItem('userId', userId);
-        setUser(response.data.referee); // Optionally store in global state/context
-        // Navigate to the dashboard after successful login
-		console.log("User ID from localStorage:", localStorage.getItem('userId'));
+        localStorage.setItem('user', JSON.stringify(response.data.referee));
+        localStorage.setItem('userId', userId);
+        setUser(response.data.referee);
+        console.log("User ID from localStorage:", localStorage.getItem('userId'));
         navigate('/dashboard');
       } else {
-        // If the token doesn't exist, display an error
         setError('Login failed. Please check your credentials.');
       }
     } catch (err) {
-      // Catch and handle errors (e.g., server down, invalid request)
       setError('Login failed. Please check your credentials.');
       console.error(err);
     }
@@ -48,57 +43,48 @@ const SignIn: React.FC<SignInProps> = ({ setUser }) => {
   };
 
   return (
-    <div className="justify-center mx-auto">
-      <div className="py-10 justify-center mx-auto bg-gradient-to-b from-secondary-100 from-60% to-60% ">
-        <div className="w-5/6 mx-auto flex mt-12">
-          <div className="w-full flex-row">
-            <div className="flex justify-center items-center">
-              <p className="font-poppins font-semibold text-[49px]">Welcome back!</p>
-              <img alt="signup" src={Slay} />
+    <div className="flex justify-center mx-auto min-h-screen bg-gradient-to-b from-secondary-100 to-primary-100 pt-20">
+      <div className="py-10 w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center">
+        <div className="w-full md:w-1/2 flex flex-col items-center">
+          <p className="font-poppins font-semibold text-4xl md:text-5xl text-center">Welcome back!</p>
+          <img alt="signup" src={Slay} className="w-3/4 md:w-full mt-4" />
+        </div>
+        <div className="w-full md:w-1/2 mt-8 md:mt-0">
+          <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto bg-primary-100 p-8 rounded-3xl shadow-lg">
+            <div className="mb-6">
+              <label className="block text-gray-100 text-lg mb-2">
+                Welcome to <span className="text-secondary-100 font-bold">ARAB.</span>
+              </label>
+              <p className="text-3xl md:text-4xl leading-tight">Sign in</p>
             </div>
-          </div>
-          <div className="w-full">
-            <form onSubmit={handleSubmit} className="w-[539px] rounded-3xl bg-primary-100 py-12 shadow-lg">
-              <div className="flex mx-auto w-5/6 gap-16 ">
-                <label className="text-gray-100">
-                  Welcome to <span className="text-secondary-100 font-bold">ARAB.</span>
-                  <br />
-                  <p className="text-[55px] leading-[82.2px]">Sign in</p>
-                </label>
-              </div>
-              <div className="w-5/6 mx-auto mt-6 gap-12">
-                <div>
-                  <label className="text-gray-100">Enter your username or email</label>
-                  <br />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    className="h-[57px] xs:w-full py-2 px-2 text-gray-100 border-secondary-100 rounded-lg outline-none border-2 font-medium xs:text-[20px]"
-                    required
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div className="mt-6">
-                  <label className="text-gray-100">Enter your Password</label>
-                  <br />
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    className="h-[57px] xs:w-full py-2 px-2 text-gray-100 border-secondary-100 rounded-lg outline-none border-2 font-medium xs:text-[20px]"
-                    required
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                <button type="submit" className="mt-6 text-primary-100 bg-secondary-100 rounded-lg w-[451px] h-[54px]">
-                  {loading ? 'Signing In...' : 'Sign In'}
-                </button>
-                <Link to="/forgotPassword" className="text-secondary-100">Forgot password</Link>
-              </div>
-            </form>
-          </div>
+            <div className="mb-6">
+              <label className="block text-gray-100 mb-2">Enter your username or email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="w-full h-12 px-4 text-gray-100 border-secondary-100 rounded-lg outline-none border-2"
+                required
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="mb-6">
+              <label className="block text-gray-100 mb-2">Enter your Password</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                className="w-full h-12 px-4 text-gray-100 border-secondary-100 rounded-lg outline-none border-2"
+                required
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+            <button type="submit" className="w-full h-12 bg-secondary-100 text-primary-100 rounded-lg">
+              {loading ? 'Signing In...' : 'Sign In'}
+            </button>
+            <Link to="/forgotPassword" className="block text-center text-secondary-100 mt-4">Forgot password</Link>
+          </form>
         </div>
       </div>
     </div>
